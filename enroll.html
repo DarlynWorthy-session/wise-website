@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Enroll — W.I.S.E.</title>
+<meta name="description" content="Enroll in an NC Pre-Licensing or General Update course with W.I.S.E. — Worthy Institute of Sales Education. An advisor will reach out within 24 hours."/>
+<link rel="icon" type="image/png" href="wiselogo1.png"/>
+<meta property="og:title" content="Enroll — W.I.S.E."/>
+<meta property="og:description" content="Start your real estate career. Enroll in NC Pre-Licensing or CE courses with Jeremy Fitzgerald Worthy, NCREC Provider #1831."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://worthyinstitute.net/enroll.html"/>
+<meta name="twitter:card" content="summary"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:      #0B1A2E;
+  --navy-light:#0f2040;
+  --indigo:    #4A4F7A;
+  --lilac:     #8b8fc8;
+  --soft:      #b8bbdd;
+  --off-white: #EEECf5;
+  --white:     #ffffff;
+  --line:      rgba(184,187,221,0.12);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+/* ── NAV ── */
+nav {
+  padding: 0 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11,26,46,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  flex-shrink: 0;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-mark {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.nav-logo-sep { width: 1px; height: 24px; background: var(--line); }
+.nav-logo-sub {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  font-weight: 300;
+}
+.nav-links { list-style: none; display: flex; gap: 40px; }
+.nav-links a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.65);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-enroll {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--off-white);
+  border: 1px solid var(--off-white);
+  padding: 9px 22px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-enroll:hover { background: var(--white); border-color: var(--white); }
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-drawer {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0; bottom: 0;
+  background: rgba(11,26,46,0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.nav-drawer.open { opacity: 1; pointer-events: all; }
+.nav-drawer a {
+  font-size: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-drawer a:hover { color: var(--white); }
+.nav-drawer .nav-enroll {
+  font-size: 12px;
+  font-family: 'Barlow', sans-serif;
+  margin-top: 8px;
+}
+
+/* ── MAIN LAYOUT ── */
+.enroll-page {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ── LEFT PANEL ── */
+.enroll-left {
+  padding: 80px 72px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.page-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.page-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--indigo);
+}
+.enroll-left h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 6vw, 80px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+.enroll-left h1 em { font-style: italic; color: var(--soft); }
+.enroll-left > div > p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.85;
+  font-weight: 300;
+  max-width: 340px;
+}
+
+/* Contact details */
+.contact-details { display: flex; flex-direction: column; }
+.contact-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.contact-detail:last-child { border-bottom: 1px solid var(--line); }
+.contact-detail .lbl {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lilac);
+}
+.contact-detail .val {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.04em;
+}
+.contact-detail a.val {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-detail a.val:hover { color: rgba(255,255,255,0.85); }
+
+/* Book link */
+.book-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-top: 40px;
+}
+.book-link::after { content: '→'; }
+.book-link:hover { color: var(--white); }
+
+.page-back {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+  margin-top: 16px;
+}
+.page-back::before { content: '←'; }
+.page-back:hover { color: rgba(255,255,255,0.6); }
+
+/* ── RIGHT PANEL (FORM) ── */
+.enroll-right {
+  padding: 80px 72px;
+  background: var(--navy-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.enroll-right h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--soft);
+  letter-spacing: 0.04em;
+  margin-bottom: 40px;
+}
+
+/* Form */
+.contact-form { display: flex; flex-direction: column; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.field {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  transition: border-color 0.2s;
+}
+.field:focus-within { border-color: var(--lilac); }
+.field label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  margin-bottom: 10px;
+}
+.field input, .field select, .field textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  padding: 0;
+  -webkit-appearance: none;
+}
+.field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.2); }
+.field textarea { resize: none; height: 64px; }
+.field select { cursor: pointer; }
+.field select option { background: var(--navy); }
+.form-submit {
+  margin-top: 36px;
+  background: var(--off-white);
+  color: var(--navy);
+  border: none;
+  padding: 15px 32px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  align-self: flex-start;
+  transition: background 0.2s, transform 0.2s;
+}
+.form-submit:hover { background: var(--white); transform: translateY(-1px); }
+
+/* Success state */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 64px 0;
+}
+.form-success .checkmark { font-size: 36px; margin-bottom: 20px; color: var(--lilac); }
+.form-success p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-style: italic;
+  color: var(--soft);
+  margin-bottom: 12px;
+}
+.form-success small {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--indigo);
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 32px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--navy);
+  gap: 24px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.3);
+}
+.footer-links { display: flex; gap: 32px; }
+.footer-links a {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.5); }
+.footer-copy { font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links, .nav-enroll { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-drawer { display: flex; }
+
+  .enroll-page { grid-template-columns: 1fr; }
+  .enroll-left { padding: 64px 24px; border-right: none; border-bottom: 1px solid var(--line); }
+  .enroll-right { padding: 64px 24px; }
+
+  footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-submit { width: 100%; text-align: center; align-self: stretch; padding: 16px; }
+}
+
+@media (max-width: 600px) {
+  .nav-logo-sub, .nav-logo-sep { display: none; }
+  .enroll-left { padding: 52px 20px; }
+  .enroll-left h1 { font-size: 52px; }
+  .enroll-right { padding: 52px 20px; }
+  .contact-detail { flex-direction: column; align-items: flex-start; gap: 6px; padding: 14px 0; }
+  .contact-detail .val { word-break: break-all; font-size: 12px; }
+  footer { padding: 20px; gap: 12px; }
+  .footer-links { gap: 20px; }
+  .footer-copy { font-size: 9px; }
+}
+
+@media (max-width: 390px) {
+  nav { padding: 0 16px; }
+  .enroll-left, .enroll-right { padding-left: 16px !important; padding-right: 16px !important; }
+  footer { padding: 18px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="wiselogo1.png" alt="W.I.S.E." style="height:38px;width:auto;display:block;object-fit:contain;"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#instructor">Instructor</a></li>
+    <li><a href="index.html#courses">Courses</a></li>
+    <li><a href="book.html">Book</a></li>
+    <li><a href="index.html#testimonials">Testimonials</a></li>
+  </ul>
+  <a href="enroll.html" class="nav-enroll">Enroll Now</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html#about" class="drawer-link">About</a>
+  <a href="index.html#instructor" class="drawer-link">Instructor</a>
+  <a href="index.html#courses" class="drawer-link">Courses</a>
+  <a href="book.html" class="drawer-link">Book</a>
+  <a href="index.html#testimonials" class="drawer-link">Testimonials</a>
+  <a href="enroll.html" class="nav-enroll drawer-link">Enroll Now</a>
+</div>
+
+<!-- MAIN -->
+<div class="enroll-page">
+
+  <!-- LEFT: info -->
+  <div class="enroll-left">
+    <div>
+      <div class="page-eyebrow">Get Started</div>
+      <h1>Start Your<br/><em>Journey</em></h1>
+      <p>Ready to build your future in real estate? Fill out the form and an advisor will reach out within 24 hours of your inquiry.</p>
+      <a href="book.html" class="book-link">Prefer to book a time directly?</a>
+    </div>
+    <div>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <span class="lbl">Phone</span>
+          <a href="tel:8035248596" class="val">803-524-8596</a>
+        </div>
+        <div class="contact-detail">
+          <span class="lbl">Email</span>
+          <a href="mailto:Admin@worthyinstitute.net" class="val">Admin@worthyinstitute.net</a>
+        </div>
+        <div class="contact-detail">
+          <span class="lbl">Web</span>
+          <a href="https://worthyinstitute.net" target="_blank" rel="noopener" class="val">worthyinstitute.net</a>
+        </div>
+      </div>
+      <a href="index.html" class="page-back">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: form -->
+  <div class="enroll-right">
+    <h2>Tell us about your goals.</h2>
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="form-row">
+        <div class="field">
+          <label for="firstName">First Name</label>
+          <input id="firstName" type="text" placeholder="Your first name" required/>
+        </div>
+        <div class="field">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" type="text" placeholder="Your last name" required/>
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input id="email" type="email" placeholder="your@email.com" required/>
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input id="phone" type="tel" placeholder="(000) 000-0000"/>
+      </div>
+      <div class="field">
+        <label for="program">Program of Interest</label>
+        <select id="program">
+          <option>NC Pre-Licensing Course — $499</option>
+          <option>2025–26 General Update Course — $49</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell us about your goals..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Inquiry →</button>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <div class="checkmark">✦</div>
+      <p>Inquiry received.</p>
+      <small>An advisor will be in touch within 24 hours.</small>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">W.I.S.E. — Worthy Institute of Sales Education</div>
+  <div class="footer-links">
+    <a href="https://worthyinstitute.net/policies.pdf" target="_blank" rel="noopener">Policies</a>
+    <a href="https://worthyinstitute.net/catalog.html" target="_blank" rel="noopener">Catalog</a>
+    <a href="enroll.html">Contact</a>
+  </div>
+  <div class="footer-copy">© <span id="year"></span> Worthy Institute of Sales Education · NCREC Provider #1831</div>
+</footer>
+
+<script>
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const navDrawer = document.getElementById('navDrawer');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navDrawer.classList.toggle('open');
+  document.body.style.overflow = navDrawer.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.drawer-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navDrawer.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// Form
+const form = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const firstName = document.getElementById('firstName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!firstName || !email) {
+    if (!firstName) document.getElementById('firstName').closest('.field').style.borderColor = 'rgba(255,100,100,0.5)';
+    if (!email) document.getElementById('email').closest('.field').style.borderColor = 'rgba(255,100,100,0.5)';
+    return;
+  }
+  form.style.display = 'none';
+  formSuccess.style.display = 'block';
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.querySelectorAll('.field input, .field textarea, .field select').forEach(input => {
+  input.addEventListener('input', () => { input.closest('.field').style.borderColor = ''; });
+});
+</script>
+
+</body>
+</html>

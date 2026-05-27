@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Book Your Spot — W.I.S.E.</title>
+<meta name="description" content="Book your seat in an NC Pre-Licensing or General Update CE course with W.I.S.E. — Worthy Institute of Sales Education. NCREC Approved Provider #1831."/>
+<link rel="icon" type="image/png" href="wiselogo1.png"/>
+<meta property="og:title" content="Book Your Spot — W.I.S.E."/>
+<meta property="og:description" content="Reserve your seat in an NC Pre-Licensing or General Update CE course with Jeremy Fitzgerald Worthy, NCREC Provider #1831."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://worthyinstitute.net/book.html"/>
+<meta name="twitter:card" content="summary"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:      #0B1A2E;
+  --navy-light:#0f2040;
+  --indigo:    #4A4F7A;
+  --lilac:     #8b8fc8;
+  --soft:      #b8bbdd;
+  --off-white: #EEECf5;
+  --white:     #ffffff;
+  --line:      rgba(184,187,221,0.12);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+/* ── INFO BAR ── */
+.info-bar {
+  background: rgba(15,32,64,0.95);
+  border-bottom: 1px solid var(--line);
+  padding: 9px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32px;
+}
+.info-bar-item {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.info-bar-item:hover { color: rgba(255,255,255,0.7); }
+
+/* ── NAV ── */
+nav {
+  padding: 0 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navy);
+  flex-shrink: 0;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+.nav-links { list-style: none; display: flex; gap: 40px; }
+.nav-links a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.65);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--white); }
+.nav-book {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--off-white);
+  border: 1px solid var(--off-white);
+  padding: 9px 22px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-book:hover { background: var(--white); border-color: var(--white); }
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-drawer {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0; bottom: 0;
+  background: rgba(11,26,46,0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.nav-drawer.open { opacity: 1; pointer-events: all; }
+.nav-drawer a {
+  font-size: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-drawer a:hover { color: var(--white); }
+.nav-drawer .nav-book {
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 8px;
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  padding: 72px 72px 56px;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+.page-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.page-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--indigo);
+}
+.page-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 5.5vw, 72px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.page-hero h1 em { font-style: italic; color: var(--soft); }
+.page-hero-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.85;
+  font-weight: 300;
+  max-width: 380px;
+}
+.page-hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.page-hero-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.page-hero-stat:last-child { border-bottom: 1px solid var(--line); }
+.page-hero-stat .lbl {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--indigo);
+}
+.page-hero-stat .val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--white);
+}
+.page-hero-stat .val em { font-style: italic; color: var(--soft); }
+
+/* ── TABS ── */
+.page-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  padding: 0 72px;
+}
+.tab-btn {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 18px 0;
+  margin-right: 40px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -1px;
+}
+.tab-btn:hover { color: rgba(255,255,255,0.7); }
+.tab-btn.active { color: var(--white); border-bottom-color: var(--lilac); }
+
+/* ── TAB PANELS ── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── BOOKING PANEL ── */
+.booking-body {
+  padding: 48px 72px 64px;
+}
+.course-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.course-card {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 32px 36px;
+  cursor: pointer;
+  background: none;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--white);
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+.course-card:hover { border-color: rgba(139,143,200,0.3); background: rgba(74,79,122,0.05); }
+.course-card.active {
+  border-color: var(--lilac);
+  background: rgba(139,143,200,0.06);
+}
+.course-card-tag {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  margin-bottom: 12px;
+}
+.course-card-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.course-card-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.course-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.course-meta-tag {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  border: 1px solid var(--line);
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+.course-card-price {
+  position: absolute;
+  top: 32px;
+  right: 36px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--white);
+}
+.course-card-price small {
+  font-size: 10px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--lilac);
+  display: block;
+  text-align: right;
+  margin-top: 2px;
+}
+.booking-embed-wrapper {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* ── CONTACT PANEL ── */
+.contact-body {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.contact-left {
+  padding: 56px 72px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.contact-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 3.5vw, 48px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.contact-left h2 em { font-style: italic; color: var(--soft); }
+.contact-left p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+.contact-details { display: flex; flex-direction: column; }
+.contact-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.contact-detail:last-child { border-bottom: 1px solid var(--line); }
+.contact-detail .lbl {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--indigo);
+}
+.contact-detail .val {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-detail a.val:hover { color: rgba(255,255,255,0.9); }
+.contact-right {
+  padding: 56px 72px;
+  background: var(--navy-light);
+}
+.contact-right h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--soft);
+  margin-bottom: 36px;
+}
+.contact-form { display: flex; flex-direction: column; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.field {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  transition: border-color 0.2s;
+}
+.field:focus-within { border-color: var(--lilac); }
+.field label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  margin-bottom: 10px;
+}
+.field input, .field select, .field textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgba(255,255,255,0.7);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  padding: 0;
+  -webkit-appearance: none;
+}
+.field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.2); }
+.field textarea { resize: none; height: 64px; }
+.field select { cursor: pointer; }
+.field select option { background: var(--navy); }
+.form-submit {
+  margin-top: 36px;
+  background: var(--off-white);
+  color: var(--navy);
+  border: none;
+  padding: 14px 32px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  align-self: flex-start;
+  transition: background 0.2s, transform 0.2s;
+}
+.form-submit:hover { background: var(--white); transform: translateY(-1px); }
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 64px 0;
+}
+.form-success .checkmark { font-size: 32px; margin-bottom: 16px; color: var(--lilac); }
+.form-success p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-style: italic;
+  color: var(--soft);
+  margin-bottom: 10px;
+}
+.form-success small {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--indigo);
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 32px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--navy);
+  gap: 24px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+.footer-logo-img {
+  height: 26px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  opacity: 0.45;
+}
+.footer-links { display: flex; gap: 32px; }
+.footer-links a {
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.5); }
+.footer-copy { font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .info-bar { padding: 8px 24px; gap: 20px; }
+  nav { padding: 0 24px; }
+  .nav-links, .nav-book { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-drawer { display: flex; }
+  .page-hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px 36px; }
+  .page-tabs { padding: 0 24px; }
+  .booking-body { padding: 28px 24px 48px; }
+  .course-cards { grid-template-columns: 1fr; gap: 12px; margin-bottom: 28px; }
+  .contact-body { grid-template-columns: 1fr; }
+  .contact-left { padding: 40px 24px; border-right: none; border-bottom: 1px solid var(--line); }
+  .contact-right { padding: 40px 24px; }
+  footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-submit { width: 100%; text-align: center; align-self: stretch; padding: 16px; }
+}
+
+@media (max-width: 600px) {
+  /* Info bar — hide email on phone */
+  .info-bar {
+    padding: 8px 20px;
+    gap: 12px;
+    justify-content: space-between;
+  }
+  .info-bar-item:nth-child(2) { display: none; }
+
+  /* Nav */
+  nav { padding: 0 20px; height: 64px; }
+  .nav-logo-img { height: 32px; }
+  .nav-drawer { top: 64px; }
+
+  /* Hero */
+  .page-hero { padding: 28px 20px 24px; gap: 24px; }
+  .page-hero h1 { font-size: 44px; margin-bottom: 16px; }
+  .page-hero-sub { font-size: 12px; }
+  .page-hero-stat { padding: 13px 0; }
+  .page-hero-stat .val { font-size: 16px; }
+
+  /* Tabs */
+  .page-tabs { padding: 0 20px; }
+  .tab-btn { font-size: 10px; padding: 15px 0; margin-right: 28px; }
+
+  /* Booking */
+  .booking-body { padding: 24px 20px 40px; }
+  .course-cards { gap: 10px; margin-bottom: 20px; }
+  .course-card { padding: 20px 18px; }
+  .course-card-price { position: static; margin-bottom: 10px; font-size: 24px; }
+  .course-card-name { font-size: 18px; }
+  .course-card-desc { font-size: 11px; margin-bottom: 16px; }
+  .course-meta-tag { font-size: 8px; padding: 4px 8px; }
+
+  /* Calendly — shorter on mobile */
+  .calendly-inline-widget { height: 500px !important; min-height: unset !important; }
+
+  /* Contact */
+  .contact-left { padding: 32px 20px; }
+  .contact-right { padding: 32px 20px; }
+  .contact-left h2 { font-size: 36px; }
+
+  /* Footer */
+  footer { padding: 20px; gap: 12px; }
+  .footer-links { gap: 20px; flex-wrap: wrap; }
+  .footer-links a { font-size: 9px; }
+  .footer-copy { font-size: 9px; }
+}
+
+@media (max-width: 390px) {
+  nav { padding: 0 16px; }
+  .info-bar { padding: 8px 16px; }
+  .page-hero, .booking-body, .contact-left, .contact-right { padding-left: 16px !important; padding-right: 16px !important; }
+  .page-tabs { padding: 0 16px; }
+  footer { padding: 18px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <a href="tel:8035248596" class="info-bar-item">
+    <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 1h2.5l1 2.5-1.5 1a7 7 0 0 0 3.5 3.5l1-1.5 2.5 1V10a1 1 0 0 1-1 1C4.4 11 1 7.6 1 3a1 1 0 0 1 1-2z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+    803-524-8596
+  </a>
+  <a href="mailto:Admin@worthyinstitute.net" class="info-bar-item">
+    <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><rect x="1" y="2.5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M1 3.5l5 3.5 5-3.5" stroke="currentColor" stroke-width="1.1"/></svg>
+    Admin@worthyinstitute.net
+  </a>
+  <span class="info-bar-item">NCREC Provider #1831</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="wiselogo1.png" alt="W.I.S.E." class="nav-logo-img"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#why">Why W.I.S.E.</a></li>
+    <li><a href="index.html#courses">Courses</a></li>
+    <li><a href="book.html" class="active">Book</a></li>
+    <li><a href="index.html#testimonials">Testimonials</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+  </ul>
+  <a href="book.html" class="nav-book">Book Now</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html#about" class="drawer-link">About</a>
+  <a href="index.html#why" class="drawer-link">Why W.I.S.E.</a>
+  <a href="index.html#courses" class="drawer-link">Courses</a>
+  <a href="book.html" class="drawer-link">Book</a>
+  <a href="index.html#testimonials" class="drawer-link">Testimonials</a>
+  <a href="index.html#faq" class="drawer-link">FAQ</a>
+  <a href="book.html" class="nav-book drawer-link">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div>
+    <div class="page-eyebrow">W.I.S.E. — NCREC Provider #1831</div>
+    <h1>Book Your<br/><em>Spot</em></h1>
+    <p class="page-hero-sub">Select a course below and choose a date that works for you — all sessions are taught by Jeremy Fitzgerald Worthy, an active NC &amp; SC broker and NCREC approved instructor.</p>
+  </div>
+  <div class="page-hero-right">
+    <div class="page-hero-stat">
+      <span class="lbl">Provider</span>
+      <span class="val">#1831 — NCREC Approved</span>
+    </div>
+    <div class="page-hero-stat">
+      <span class="lbl">Location</span>
+      <span class="val">Charlotte, <em>NC</em></span>
+    </div>
+    <div class="page-hero-stat">
+      <span class="lbl">Format</span>
+      <span class="val">In-Person · Small Class Sizes</span>
+    </div>
+    <div class="page-hero-stat">
+      <span class="lbl">Questions</span>
+      <span class="val">803-524-8596</span>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="page-tabs">
+  <button class="tab-btn active" data-tab="booking">Book a Class</button>
+  <button class="tab-btn" data-tab="contact">Have a Question?</button>
+</div>
+
+<!-- BOOKING TAB -->
+<div class="tab-panel active" id="tab-booking">
+  <div class="booking-body">
+
+    <div class="course-cards">
+
+      <!-- NC Pre-Licensing -->
+      <button class="course-card active" data-calendly="https://calendly.com/admin-worthyinstitute/nc-pre-licensing">
+        <div class="course-card-price">$499 <small>/ all-inclusive</small></div>
+        <div class="course-card-tag">New License</div>
+        <div class="course-card-name">NC Pre-Licensing</div>
+        <div class="course-card-desc">The state-required 75-hour course for anyone starting their real estate career in North Carolina. Covers all required topics — contracts, agency, finance, and NC law — with exam prep built in.</div>
+        <div class="course-card-meta">
+          <span class="course-meta-tag">75 Hours</span>
+          <span class="course-meta-tag">Exam Prep Included</span>
+          <span class="course-meta-tag">All Materials Included</span>
+          <span class="course-meta-tag">In-Person</span>
+        </div>
+      </button>
+
+      <!-- General Update CE -->
+      <button class="course-card" data-calendly="https://calendly.com/admin-worthyinstitute/in-person-genup-course-clone">
+        <div class="course-card-price">$49 <small>/ per session</small></div>
+        <div class="course-card-tag">License Renewal</div>
+        <div class="course-card-name">General Update CE</div>
+        <div class="course-card-desc">The 4-hour annual continuing education course required for NC license renewal. Fully NCREC compliant and designed to be directly applicable to your day-to-day practice as an active broker.</div>
+        <div class="course-card-meta">
+          <span class="course-meta-tag">4 Hours</span>
+          <span class="course-meta-tag">NCREC Compliant</span>
+          <span class="course-meta-tag">License Renewal</span>
+          <span class="course-meta-tag">In-Person</span>
+        </div>
+      </button>
+
+    </div>
+
+    <div class="booking-embed-wrapper">
+      <div id="calendly-embed"
+           class="calendly-inline-widget"
+           data-url="https://calendly.com/admin-worthyinstitute/nc-pre-licensing"
+           style="min-width:320px;height:660px;">
+      </div>
+      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT TAB -->
+<div class="tab-panel" id="tab-contact">
+  <div class="contact-body">
+
+    <div class="contact-left">
+      <div>
+        <h2>Not Ready<br/>to <em>Commit?</em></h2>
+        <p>Send us a message and an advisor will get back to you within one business day. Whether you have questions about the courses, pricing, or scheduling — we're happy to help.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <span class="lbl">Phone</span>
+            <a href="tel:8035248596" class="val">803-524-8596</a>
+          </div>
+          <div class="contact-detail">
+            <span class="lbl">Email</span>
+            <a href="mailto:Admin@worthyinstitute.net" class="val">Admin@worthyinstitute.net</a>
+          </div>
+          <div class="contact-detail">
+            <span class="lbl">Response Time</span>
+            <span class="val">Within 1 Business Day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <h3>Tell us about your goals.</h3>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input id="firstName" type="text" placeholder="Your first name" required/>
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" type="text" placeholder="Your last name"/>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input id="phone" type="tel" placeholder="(000) 000-0000"/>
+        </div>
+        <div class="field">
+          <label for="program">Program of Interest</label>
+          <select id="program">
+            <option>NC Pre-Licensing Course — $499</option>
+            <option>General Update CE — $49</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="What questions do you have?"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message →</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="checkmark">✦</div>
+        <p>Message received.</p>
+        <small>We'll be in touch within one business day.</small>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="wiselogo1.png" alt="W.I.S.E." class="footer-logo-img"/>
+  <div class="footer-links">
+    <a href="https://worthyinstitute.net/policies.pdf" target="_blank" rel="noopener">Policies</a>
+    <a href="https://worthyinstitute.net/catalog.html" target="_blank" rel="noopener">Catalog</a>
+    <a href="index.html">Home</a>
+  </div>
+  <div class="footer-copy">© <span id="year"></span> Worthy Institute of Sales Education · NCREC Provider #1831</div>
+</footer>
+
+<script>
+// ── Hamburger ──
+const hamburger = document.getElementById('hamburger');
+const navDrawer = document.getElementById('navDrawer');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navDrawer.classList.toggle('open');
+  document.body.style.overflow = navDrawer.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.drawer-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navDrawer.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── Page Tabs ──
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Course Card Toggle → swaps Calendly + scrolls down ──
+document.querySelectorAll('.course-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.course-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    const newUrl = card.getAttribute('data-calendly');
+    const embed = document.getElementById('calendly-embed');
+    embed.setAttribute('data-url', newUrl);
+    embed.innerHTML = '';
+    if (window.Calendly) {
+      Calendly.initInlineWidget({ url: newUrl, parentElement: embed });
+    }
+    // Scroll to the Calendly embed
+    document.querySelector('.booking-embed-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ── Contact Form ──
+const form = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const firstName = document.getElementById('firstName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!firstName || !email) {
+    if (!firstName) document.getElementById('firstName').closest('.field').style.borderColor = 'rgba(255,100,100,0.5)';
+    if (!email) document.getElementById('email').closest('.field').style.borderColor = 'rgba(255,100,100,0.5)';
+    return;
+  }
+  form.style.display = 'none';
+  formSuccess.style.display = 'block';
+});
+document.querySelectorAll('.field input, .field textarea, .field select').forEach(input => {
+  input.addEventListener('input', () => { input.closest('.field').style.borderColor = ''; });
+});
+
+// ── Open contact tab if linked with #contact ──
+if (window.location.hash === '#contact') {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector('[data-tab="contact"]').classList.add('active');
+  document.getElementById('tab-contact').classList.add('active');
+}
+
+// ── Year ──
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

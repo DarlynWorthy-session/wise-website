@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>W.I.S.E. — Admin</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:      #0B1A2E;
+  --navy-light:#0f2040;
+  --indigo:    #4A4F7A;
+  --lilac:     #8b8fc8;
+  --soft:      #b8bbdd;
+  --off-white: #EEECf5;
+  --white:     #ffffff;
+  --dim:       rgba(255,255,255,0.06);
+  --line:      rgba(184,187,221,0.12);
+}
+
+html, body {5
+  height: 100%;
+  font-family: 'Barlow', sans-serif;
+  background: #060e1a;
+  color: var(--white);
+  overflow: hidden;
+}
+
+/* ── LOGIN SCREEN ── */
+.login-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background-image:
+    radial-gradient(ellipse 60% 60% at 80% 20%, rgba(74,79,122,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(45,16,96,0.22) 0%, transparent 60%);
+}
+
+.login-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  pointer-events: none;
+}
+
+.login-box {
+  position: relative;
+  z-index: 2;
+  background: #0d1828;
+  border: 1px solid rgba(74,79,122,0.3);
+  border-radius: 4px;
+  width: 420px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+  animation: fadeUp 0.45s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-header {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.login-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.login-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.login-header-sep { width: 1px; height: 18px; background: var(--line); }
+.login-header-label {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  font-weight: 500;
+}
+.login-back {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.login-back:hover { color: rgba(255,255,255,0.55); }
+
+.login-body {
+  padding: 52px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.login-lock {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(74,79,122,0.12);
+  border: 1px solid rgba(74,79,122,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.login-subtitle {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-top: -12px;
+}
+
+.login-field {
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+}
+.login-field label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 10px;
+}
+.login-field input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+}
+
+.login-error {
+  font-size: 11px;
+  color: #ff7070;
+  letter-spacing: 0.08em;
+  display: none;
+  margin-top: -16px;
+  width: 100%;
+}
+
+.login-btn {
+  width: 100%;
+  background: var(--off-white);
+  color: var(--navy);
+  border: none;
+  padding: 14px 24px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 0.2s;
+}
+.login-btn:hover { opacity: 0.88; }
+
+/* ── DASHBOARD ── */
+.admin-dashboard {
+  position: fixed;
+  inset: 0;
+  background: #060e1a;
+  display: none;
+  flex-direction: column;
+  font-family: 'Barlow', sans-serif;
+  overflow: hidden;
+}
+.admin-dashboard.visible { display: flex; }
+
+/* Top Bar */
+.admin-topbar {
+  height: 60px;
+  background: #0b1625;
+  border-bottom: 1px solid rgba(74,79,122,0.18);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  gap: 20px;
+  flex-shrink: 0;
+}
+.admin-topbar-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.admin-topbar-sep { width: 1px; height: 22px; background: rgba(74,79,122,0.3); }
+.admin-topbar-title {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.admin-topbar-badge {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--lilac);
+  padding: 4px 11px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+.admin-topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.admin-owner-chip {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.admin-owner-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--indigo), var(--lilac));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.admin-logout-btn {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  background: none;
+  border: 1px solid rgba(74,79,122,0.2);
+  padding: 7px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.admin-logout-btn:hover { color: rgba(255,255,255,0.5); border-color: rgba(74,79,122,0.4); }
+
+/* Body layout */
+.admin-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 228px;
+  background: #080f1c;
+  border-right: 1px solid rgba(74,79,122,0.12);
+  flex-shrink: 0;
+  padding: 28px 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.admin-sidebar-section {
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(74,79,122,0.55);
+  padding: 0 24px;
+  margin: 24px 0 8px;
+}
+.admin-sidebar-section:first-child { margin-top: 0; }
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 24px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: all 0.18s;
+  border-left: 2px solid transparent;
+  user-select: none;
+}
+.admin-nav-item:hover  { color: rgba(255,255,255,0.65); background: rgba(74,79,122,0.07); }
+.admin-nav-item.active { color: var(--white); background: rgba(74,79,122,0.13); border-left-color: var(--lilac); }
+.admin-nav-icon { font-size: 15px; width: 20px; text-align: center; }
+.admin-nav-badge {
+  margin-left: auto;
+  font-size: 9px;
+  background: rgba(139,143,200,0.2);
+  color: var(--lilac);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Main content */
+.admin-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 44px 52px;
+  scroll-behavior: smooth;
+}
+.admin-page { display: none; }
+.admin-page.active {
+  display: block;
+  animation: pageIn 0.25s ease both;
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Page header */
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.admin-page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--white);
+}
+.admin-page-title em { font-style: italic; color: var(--soft); }
+.admin-page-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.06em;
+  margin-top: 8px;
+}
+
+.admin-add-btn {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border-radius: 2px;
+  border: none;
+  background: var(--off-white);
+  color: var(--navy);
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.admin-add-btn:hover { opacity: 0.88; }
+
+/* Stats row */
+.admin-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(74,79,122,0.12);
+  border: 1px solid rgba(74,79,122,0.12);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.admin-stat {
+  background: #0a1520;
+  padding: 24px 28px;
+}
+.admin-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+}
+.admin-stat-num sup { font-size: 16px; color: var(--lilac); }
+.admin-stat-lbl {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-top: 7px;
+}
+
+/* Table */
+.admin-table-wrap {
+  border: 1px solid rgba(74,79,122,0.14);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admin-table thead tr { background: rgba(74,79,122,0.1); }
+.admin-table th {
+  padding: 13px 20px;
+  text-align: left;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(74,79,122,0.14);
+  white-space: nowrap;
+}
+.admin-table td {
+  padding: 15px 20px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(74,79,122,0.07);
+  vertical-align: middle;
+}
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: rgba(74,79,122,0.04); color: rgba(255,255,255,0.65); }
+.admin-table td strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+/* Badges */
+.badge {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.badge-new     { background: rgba(74,79,122,0.25);  color: var(--lilac); }
+.badge-active  { background: rgba(40,200,80,0.13);  color: #5dd68c; }
+.badge-done    { background: rgba(93,160,255,0.13); color: #7ab8ff; }
+.badge-pending { background: rgba(255,189,46,0.13); color: #ffd466; }
+.badge-replied { background: rgba(40,200,80,0.1);   color: #5dd68c; }
+.badge-live    { background: rgba(40,200,80,0.13);  color: #5dd68c; }
+.badge-draft   { background: rgba(74,79,122,0.2);   color: rgba(255,255,255,0.4); }
+
+/* Table buttons */
+.tbl-btn {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(74,79,122,0.2);
+  background: transparent;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  transition: all 0.18s;
+  margin-right: 4px;
+}
+.tbl-btn:hover         { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.tbl-btn.danger:hover  { color: #ff7070; border-color: rgba(255,112,112,0.3); }
+
+/* Progress bar */
+.prog-wrap { display: flex; align-items: center; gap: 10px; }
+.prog-bar {
+  width: 80px; height: 3px;
+  background: rgba(74,79,122,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--indigo), var(--lilac));
+  border-radius: 2px;
+}
+.prog-pct { font-size: 11px; color: rgba(255,255,255,0.4); min-width: 32px; }
+
+/* Activity feed */
+.admin-section-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 20px;
+}
+.admin-activity-list { display: flex; flex-direction: column; gap: 0; }
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(74,79,122,0.08);
+}
+.activity-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.activity-dot.green  { background: #5dd68c; }
+.activity-dot.blue   { background: #7ab8ff; }
+.activity-dot.purple { background: var(--lilac); }
+.activity-dot.yellow { background: #ffd466; }
+.activity-text { font-size: 12px; color: rgba(255,255,255,0.45); flex: 1; }
+.activity-text strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+.activity-time { font-size: 10px; color: rgba(74,79,122,0.7); letter-spacing: 0.06em; white-space: nowrap; }
+
+/* Settings fields */
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(74,79,122,0.12);
+  border: 1px solid rgba(74,79,122,0.12);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.settings-cell {
+  background: #0a1520;
+  padding: 28px;
+}
+.settings-cell label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 16px;
+}
+.settings-cell input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  outline: none;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  width: 100%;
+  padding: 8px 0;
+  font-weight: 300;
+  transition: border-color 0.2s;
+}
+.settings-cell input:focus { border-color: rgba(139,143,200,0.4); }
+
+/* Notification toast */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: #0d1828;
+  border: 1px solid rgba(74,79,122,0.35);
+  border-radius: 3px;
+  padding: 14px 22px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--soft);
+  z-index: 99999;
+  display: none;
+  animation: toastIn 0.3s ease both;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+.toast.visible { display: block; }
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255,255,255,0.15);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-grid-bg"></div>
+  <div class="login-box">
+    <div class="login-header">
+      <div class="login-header-brand">
+        <div class="login-logo">W.I.S.E.</div>
+        <div class="login-header-sep"></div>
+        <div class="login-header-label">Owner Access</div>
+      </div>
+      <a href="index.html" class="login-back">← Back to Site</a>
+    </div>
+    <div class="login-body">
+      <div class="login-lock">🔐</div>
+      <p class="login-subtitle">Admin Login</p>
+      <div class="login-field">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter admin password"
+          onkeydown="if(event.key==='Enter')tryLogin()"/>
+      </div>
+      <div id="loginError" class="login-error">Incorrect password. Please try again.</div>
+      <button class="login-btn" onclick="tryLogin()">Unlock Admin Panel →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN DASHBOARD ══ -->
+<div id="adminDashboard" class="admin-dashboard">
+
+  <!-- Top Bar -->
+  <div class="admin-topbar">
+    <div class="admin-topbar-logo">W.I.S.E.</div>
+    <div class="admin-topbar-sep"></div>
+    <div class="admin-topbar-title">Admin Dashboard</div>
+    <div class="admin-topbar-badge">Owner</div>
+    <div class="admin-topbar-right">
+      <div class="admin-owner-chip">
+        <div class="admin-owner-avatar">WA</div>
+        Worthy &amp; Associates
+      </div>
+      <a href="index.html" class="admin-logout-btn" onclick="handleLogout()">Log Out</a>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-section">Overview</div>
+      <div class="admin-nav-item active" onclick="showPage('overview', this)">
+        <span class="admin-nav-icon">📊</span> Dashboard
+      </div>
+
+      <div class="admin-sidebar-section">Management</div>
+      <div class="admin-nav-item" onclick="showPage('courses', this)">
+        <span class="admin-nav-icon">📚</span> Courses
+      </div>
+      <div class="admin-nav-item" onclick="showPage('enrollments', this)">
+        <span class="admin-nav-icon">🎓</span> Enrollments
+        <span class="admin-nav-badge" id="badge-enrollments">14</span>
+      </div>
+      <div class="admin-nav-item" onclick="showPage('inquiries', this)">
+        <span class="admin-nav-icon">📩</span> Inquiries
+        <span class="admin-nav-badge" id="badge-inquiries">5</span>
+      </div>
+      <div class="admin-nav-item" onclick="showPage('completion', this)">
+        <span class="admin-nav-icon">✅</span> Completion
+      </div>
+
+      <div class="admin-sidebar-section">Settings</div>
+      <div class="admin-nav-item" onclick="showPage('settings', this)">
+        <span class="admin-nav-icon">⚙️</span> Site Settings
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="admin-main">
+
+      <!-- ── OVERVIEW ── -->
+      <div id="page-overview" class="admin-page active">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title" id="greeting-title">Good morning, <em>Worthy</em></div>
+            <div class="admin-page-sub" id="greeting-date">Here's what's happening at W.I.S.E. today</div>
+          </div>
+        </div>
+        <div class="admin-stats-row">
+          <div class="admin-stat">
+            <div class="admin-stat-num">514<sup>+</sup></div>
+            <div class="admin-stat-lbl">Total Students</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num" id="stat-enrollments">14</div>
+            <div class="admin-stat-lbl">Active Enrollments</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num" id="stat-inquiries">5</div>
+            <div class="admin-stat-lbl">New Inquiries</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num">3</div>
+            <div class="admin-stat-lbl">Courses Offered</div>
+          </div>
+        </div>
+        <div class="admin-section-label">Recent Activity</div>
+        <div class="admin-activity-list">
+          <div class="activity-item">
+            <div class="activity-dot green"></div>
+            <div class="activity-text"><strong>Marcus Johnson</strong> enrolled in Agent Mastery Program</div>
+            <div class="activity-time">2 hrs ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot blue"></div>
+            <div class="activity-text"><strong>Alicia Torres</strong> completed License Prep — Certificate issued</div>
+            <div class="activity-time">5 hrs ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot purple"></div>
+            <div class="activity-text">New inquiry from <strong>Devon Park</strong> — Investment &amp; Contracts</div>
+            <div class="activity-time">7 hrs ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot yellow"></div>
+            <div class="activity-text"><strong>Sofia Reyes</strong> is at 80% — on track to complete Agent Mastery</div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot green"></div>
+            <div class="activity-text"><strong>James Carter</strong> enrolled in Investment &amp; Contracts</div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot purple"></div>
+            <div class="activity-text">New inquiry from <strong>Priya Nair</strong> — License Prep</div>
+            <div class="activity-time">2 days ago</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── COURSES ── -->
+      <div id="page-courses" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Manage <em>Courses</em></div>
+            <div class="admin-page-sub">Add, edit, or archive course offerings</div>
+          </div>
+          <button class="admin-add-btn" onclick="showToast('Course editor coming soon')">+ Add Course</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Course Name</th>
+                <th>Duration</th>
+                <th>Price</th>
+                <th>Enrolled</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--indigo);font-family:'Cormorant Garamond',serif;font-style:italic">01</td>
+                <td><strong>License Prep</strong></td>
+                <td>8 Weeks</td>
+                <td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6)">$499</td>
+                <td>214</td>
+                <td><span class="badge badge-live">Live</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Edit course: License Prep')">Edit</button>
+                  <button class="tbl-btn danger" onclick="showToast('Archive: License Prep')">Archive</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="color:var(--indigo);font-family:'Cormorant Garamond',serif;font-style:italic">02</td>
+                <td><strong>Agent Mastery Program</strong></td>
+                <td>12 Weeks</td>
+                <td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6)">$999</td>
+                <td>187</td>
+                <td><span class="badge badge-live">Live</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Edit course: Agent Mastery')">Edit</button>
+                  <button class="tbl-btn danger" onclick="showToast('Archive: Agent Mastery')">Archive</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="color:var(--indigo);font-family:'Cormorant Garamond',serif;font-style:italic">03</td>
+                <td><strong>Investment &amp; Contracts</strong></td>
+                <td>6 Weeks</td>
+                <td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6)">$699</td>
+                <td>113</td>
+                <td><span class="badge badge-live">Live</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Edit course: Investment &amp; Contracts')">Edit</button>
+                  <button class="tbl-btn danger" onclick="showToast('Archive: Investment &amp; Contracts')">Archive</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="color:var(--indigo);font-family:'Cormorant Garamond',serif;font-style:italic">04</td>
+                <td><strong>Advanced Negotiation</strong> <span style="font-size:9px;color:var(--indigo);letter-spacing:.1em">(Coming Soon)</span></td>
+                <td>4 Weeks</td>
+                <td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6)">$399</td>
+                <td>—</td>
+                <td><span class="badge badge-draft">Draft</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Edit course: Advanced Negotiation')">Edit</button>
+                  <button class="tbl-btn" onclick="showToast('Published: Advanced Negotiation')">Publish</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── ENROLLMENTS ── -->
+      <div id="page-enrollments" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Student <em>Enrollments</em></div>
+            <div class="admin-page-sub">14 active enrollments across all programs</div>
+          </div>
+          <button class="admin-add-btn" onclick="showToast('Manual enrollment form coming soon')">+ Manual Enroll</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Email</th>
+                <th>Program</th>
+                <th>Enrolled</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Marcus Johnson</strong></td>
+                <td>marcus.j@email.com</td>
+                <td>Agent Mastery Program</td>
+                <td>May 25, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Viewing: Marcus Johnson')">View</button>
+                  <button class="tbl-btn danger" onclick="showToast('Removed enrollment: Marcus Johnson')">Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Sofia Reyes</strong></td>
+                <td>sofia.r@email.com</td>
+                <td>Agent Mastery Program</td>
+                <td>Apr 10, 2025</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Viewing: Sofia Reyes')">View</button>
+                  <button class="tbl-btn danger" onclick="showToast('Removed enrollment: Sofia Reyes')">Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>James Carter</strong></td>
+                <td>j.carter@email.com</td>
+                <td>Investment &amp; Contracts</td>
+                <td>May 24, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Viewing: James Carter')">View</button>
+                  <button class="tbl-btn danger" onclick="showToast('Removed enrollment: James Carter')">Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Jordan Mitchell</strong></td>
+                <td>jordan.m@email.com</td>
+                <td>License Prep</td>
+                <td>Mar 2, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Viewing: Jordan Mitchell')">View</button>
+                  <button class="tbl-btn danger" onclick="showToast('Removed enrollment: Jordan Mitchell')">Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Priya Nair</strong></td>
+                <td>p.nair@email.com</td>
+                <td>License Prep</td>
+                <td>May 18, 2025</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Viewing: Priya Nair')">View</button>
+                  <button class="tbl-btn danger" onclick="showToast('Removed enrollment: Priya Nair')">Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>David Williams</strong></td>
+                <td>d.williams@email.com</td>
+                <td>Agent Mastery Program</td>
+                <td>Jan 15, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Viewing: David Williams')">View</button>
+                  <button class="tbl-btn danger" onclick="showToast('Removed enrollment: David Williams')">Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Alicia Torres</strong></td>
+                <td>a.torres@email.com</td>
+                <td>License Prep</td>
+                <td>Mar 1, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Viewing: Alicia Torres')">View</button>
+                  <button class="tbl-btn danger" onclick="showToast('Removed enrollment: Alicia Torres')">Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Devon Park</strong></td>
+                <td>devon.p@email.com</td>
+                <td>Investment &amp; Contracts</td>
+                <td>May 22, 2025</td>
+                <td><span class="badge badge-pending">Pending</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Viewing: Devon Park')">View</button>
+                  <button class="tbl-btn danger" onclick="showToast('Removed enrollment: Devon Park')">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── INQUIRIES ── -->
+      <div id="page-inquiries" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Contact <em>Inquiries</em></div>
+            <div class="admin-page-sub">5 unread inquiries — respond within 24 hours</div>
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Program Interest</th>
+                <th>Message Preview</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Devon Park</strong></td>
+                <td>devon.p@email.com</td>
+                <td>Investment &amp; Contracts</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"I'm interested in learning about contract law…"</td>
+                <td>May 25, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Reply to Devon Park')">Reply</button>
+                  <button class="tbl-btn" onclick="showToast('Viewing inquiry: Devon Park')">View</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Priya Nair</strong></td>
+                <td>p.nair@email.com</td>
+                <td>License Prep</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"When does the next cohort start?"</td>
+                <td>May 23, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Reply to Priya Nair')">Reply</button>
+                  <button class="tbl-btn" onclick="showToast('Viewing inquiry: Priya Nair')">View</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Aaliyah Brooks</strong></td>
+                <td>aaliyah.b@email.com</td>
+                <td>Agent Mastery Program</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"Do you offer payment plans for the program?"</td>
+                <td>May 22, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Reply to Aaliyah Brooks')">Reply</button>
+                  <button class="tbl-btn" onclick="showToast('Viewing inquiry: Aaliyah Brooks')">View</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Terrence Mills</strong></td>
+                <td>t.mills@email.com</td>
+                <td>License Prep</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"I'd love to learn more about the mentorship…"</td>
+                <td>May 20, 2025</td>
+                <td><span class="badge badge-replied">Replied</span></td>
+                <td><button class="tbl-btn" onclick="showToast('Viewing inquiry: Terrence Mills')">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Camille Dubois</strong></td>
+                <td>c.dubois@email.com</td>
+                <td>Investment &amp; Contracts</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"How experienced are the instructors in…"</td>
+                <td>May 18, 2025</td>
+                <td><span class="badge badge-replied">Replied</span></td>
+                <td><button class="tbl-btn" onclick="showToast('Viewing inquiry: Camille Dubois')">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── COMPLETION ── -->
+      <div id="page-completion" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Course <em>Completion</em></div>
+            <div class="admin-page-sub">Track progress and issue certificates</div>
+          </div>
+        </div>
+        <div class="admin-stats-row" style="grid-template-columns:repeat(3,1fr)">
+          <div class="admin-stat">
+            <div class="admin-stat-num">98<sup>%</sup></div>
+            <div class="admin-stat-lbl">Exam Pass Rate</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num">487</div>
+            <div class="admin-stat-lbl">Certificates Issued</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num">14</div>
+            <div class="admin-stat-lbl">Currently In Progress</div>
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Program</th>
+                <th>Progress</th>
+                <th>Started</th>
+                <th>Est. Completion</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sofia Reyes</strong></td>
+                <td>Agent Mastery Program</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:80%"></div></div>
+                    <span class="prog-pct">80%</span>
+                  </div>
+                </td>
+                <td>Apr 10, 2025</td>
+                <td>Jun 30, 2025</td>
+                <td><span class="badge badge-active">On Track</span></td>
+                <td><button class="tbl-btn" onclick="showToast('Viewing progress: Sofia Reyes')">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Priya Nair</strong></td>
+                <td>License Prep</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:35%"></div></div>
+                    <span class="prog-pct">35%</span>
+                  </div>
+                </td>
+                <td>May 18, 2025</td>
+                <td>Jul 12, 2025</td>
+                <td><span class="badge badge-active">On Track</span></td>
+                <td><button class="tbl-btn" onclick="showToast('Viewing progress: Priya Nair')">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Marcus Johnson</strong></td>
+                <td>Agent Mastery Program</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:5%"></div></div>
+                    <span class="prog-pct">5%</span>
+                  </div>
+                </td>
+                <td>May 25, 2025</td>
+                <td>Aug 17, 2025</td>
+                <td><span class="badge badge-new">Just Started</span></td>
+                <td><button class="tbl-btn" onclick="showToast('Viewing progress: Marcus Johnson')">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Alicia Torres</strong></td>
+                <td>License Prep</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+                    <span class="prog-pct">100%</span>
+                  </div>
+                </td>
+                <td>Mar 1, 2025</td>
+                <td>May 25, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td><button class="tbl-btn" onclick="showToast('Certificate issued: Alicia Torres')">Certificate</button></td>
+              </tr>
+              <tr>
+                <td><strong>Jordan Mitchell</strong></td>
+                <td>License Prep</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+                    <span class="prog-pct">100%</span>
+                  </div>
+                </td>
+                <td>Mar 2, 2025</td>
+                <td>Apr 27, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td><button class="tbl-btn" onclick="showToast('Certificate issued: Jordan Mitchell')">Certificate</button></td>
+              </tr>
+              <tr>
+                <td><strong>David Williams</strong></td>
+                <td>Agent Mastery Program</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+                    <span class="prog-pct">100%</span>
+                  </div>
+                </td>
+                <td>Jan 15, 2025</td>
+                <td>Apr 8, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td><button class="tbl-btn" onclick="showToast('Certificate issued: David Williams')">Certificate</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS ── -->
+      <div id="page-settings" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Site <em>Settings</em></div>
+            <div class="admin-page-sub">Manage public-facing content and contact details</div>
+          </div>
+          <button class="admin-add-btn" onclick="showToast('Settings saved ✓')">Save Changes</button>
+        </div>
+
+        <div class="admin-section-label" style="margin-bottom:16px">Contact &amp; Display Info</div>
+        <div class="settings-grid">
+          <div class="settings-cell">
+            <label>Contact Phone</label>
+            <input type="text" value="+1 (305) 555-9821"/>
+          </div>
+          <div class="settings-cell">
+            <label>Contact Email</label>
+            <input type="email" value="info@wiseinstitute.com"/>
+          </div>
+          <div class="settings-cell">
+            <label>Hero Headline</label>
+            <input type="text" value="Where Professionals Are Built."/>
+          </div>
+          <div class="settings-cell">
+            <label>Total Students (display)</label>
+            <input type="text" value="500+"/>
+          </div>
+          <div class="settings-cell">
+            <label>Exam Pass Rate (display)</label>
+            <input type="text" value="98%"/>
+          </div>
+          <div class="settings-cell">
+            <label>Years of Experience (display)</label>
+            <input type="text" value="10+"/>
+          </div>
+        </div>
+
+        <div class="admin-section-label" style="margin-bottom:16px">Testimonials Visibility</div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Quote Preview</th>
+                <th>Visible</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Jordan Mitchell</strong></td>
+                <td style="color:rgba(255,255,255,.3);font-style:italic">"W.I.S.E. didn't just teach me how to pass a test…"</td>
+                <td><span class="badge badge-live">Visible</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Edit testimonial: Jordan Mitchell')">Edit</button>
+                  <button class="tbl-btn danger" onclick="showToast('Hidden: Jordan Mitchell')">Hide</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Sofia Reyes</strong></td>
+                <td style="color:rgba(255,255,255,.3);font-style:italic">"The instructors are actual agents working in the field…"</td>
+                <td><span class="badge badge-live">Visible</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Edit testimonial: Sofia Reyes')">Edit</button>
+                  <button class="tbl-btn danger" onclick="showToast('Hidden: Sofia Reyes')">Hide</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>David Williams</strong></td>
+                <td style="color:rgba(255,255,255,.3);font-style:italic">"I passed my exam on the first try…"</td>
+                <td><span class="badge badge-live">Visible</span></td>
+                <td>
+                  <button class="tbl-btn" onclick="showToast('Edit testimonial: David Williams')">Edit</button>
+                  <button class="tbl-btn danger" onclick="showToast('Hidden: David Williams')">Hide</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:32px">
+          <div class="admin-section-label" style="margin-bottom:16px">Change Admin Password</div>
+          <div class="settings-grid" style="grid-template-columns:1fr 1fr">
+            <div class="settings-cell">
+              <label>New Password</label>
+              <input type="password" id="newPassword" placeholder="Enter new password"/>
+            </div>
+            <div class="settings-cell">
+              <label>Confirm Password</label>
+              <input type="password" id="confirmPassword" placeholder="Confirm new password"/>
+            </div>
+          </div>
+          <button class="admin-add-btn" onclick="changePassword()" style="margin-top:4px">Update Password</button>
+        </div>
+      </div>
+
+    </div><!-- /admin-main -->
+  </div><!-- /admin-body -->
+</div><!-- /admin-dashboard -->
+
+<!-- Toast notification -->
+<div id="toast" class="toast"></div>
+
+<script>
+  /* ── State ── */
+  let adminPassword = 'wise2025';
+  let toastTimer = null;
+
+  /* ── Auth ── */
+  function tryLogin() {
+    const pw = document.getElementById('loginPassword').value;
+    if (pw === adminPassword) {
+      document.getElementById('loginScreen').style.display = 'none';
+      const dash = document.getElementById('adminDashboard');
+      dash.classList.add('visible');
+      setGreeting();
+    } else {
+      const err = document.getElementById('loginError');
+      err.style.display = 'block';
+      document.getElementById('loginPassword').value = '';
+      document.getElementById('loginPassword').focus();
+      setTimeout(() => err.style.display = 'none', 3000);
+    }
+  }
+
+  function handleLogout() {
+    document.getElementById('adminDashboard').classList.remove('visible');
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('loginPassword').value = '';
+  }
+
+  /* ── Navigation ── */
+  function showPage(id, el) {
+    document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    el.classList.add('active');
+  }
+
+  /* ── Greeting ── */
+  function setGreeting() {
+    const now = new Date();
+    const hour = now.getHours();
+    const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+    document.getElementById('greeting-title').innerHTML = greeting + ', <em>Worthy</em>';
+
+    const months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const dateStr = days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+    document.getElementById('greeting-date').textContent = "Here's what's happening at W.I.S.E. today — " + dateStr;
+  }
+
+  /* ── Toast ── */
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('visible'), 2800);
+  }
+
+  /* ── Change Password ── */
+  function changePassword() {
+    const np = document.getElementById('newPassword').value;
+    const cp = document.getElementById('confirmPassword').value;
+    if (!np) { showToast('Please enter a new password'); return; }
+    if (np !== cp) { showToast('Passwords do not match'); return; }
+    if (np.length < 6) { showToast('Password must be at least 6 characters'); return; }
+    adminPassword = np;
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmPassword').value = '';
+    showToast('Password updated successfully ✓');
+  }
+
+  /* ── Keyboard shortcut ── */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const dash = document.getElementById('adminDashboard');
+      if (dash.classList.contains('visible')) {
+        if (confirm('Log out of admin panel?')) handleLogout();
+      }
+    }
+  });
+
+  /* ── Auto-focus password on load ── */
+  window.addEventListener('load', () => {
+    document.getElementById('loginPassword').focus();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>W.I.S.E. — Redesign Mockup v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0B1A2E;
+  --navy-light: #0f2040;
+  --indigo: #4A4F7A;
+  --lilac: #8b8fc8;
+  --soft: #b8bbdd;
+  --off-white: #EEECf5;
+  --white: #ffffff;
+  --dim: rgba(255,255,255,0.06);
+  --line: rgba(184,187,221,0.12);
+}
+
+body {
+  background: #07111f;
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── MOCKUP FRAME ── */
+.mockup-bar {
+  background: #0d1420;
+  border-bottom: 1px solid rgba(74,79,122,0.2);
+  padding: 11px 24px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: #4a4f7a;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.mockup-bar strong { color: #8b8fc8; font-weight: 500; }
+
+.browser {
+  max-width: 1200px;
+  margin: 24px auto;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(74,79,122,0.2);
+  box-shadow: 0 60px 140px rgba(0,0,0,0.8);
+}
+.browser-bar {
+  background: #0d1828;
+  padding: 11px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid rgba(74,79,122,0.15);
+}
+.bdots { display:flex; gap:6px; }
+.bdots span { width:10px; height:10px; border-radius:50%; }
+.bdots span:nth-child(1){background:#ff5f57}
+.bdots span:nth-child(2){background:#ffbd2e}
+.bdots span:nth-child(3){background:#28c840}
+.burl { flex:1; background:rgba(255,255,255,0.03); border:1px solid rgba(74,79,122,0.2); border-radius:6px; padding:5px 14px; font-size:11px; color:#4a4f7a; font-family:monospace; letter-spacing:0.04em; }
+
+/* ── SITE ── */
+.site { background: var(--navy); color: var(--white); }
+
+/* NAV */
+nav {
+  padding: 0 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo-mark {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.nav-logo-sep { width: 1px; height: 24px; background: var(--line); }
+.nav-logo-sub { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac); font-weight: 300; }
+nav ul { list-style: none; display: flex; gap: 40px; }
+nav ul a { text-decoration: none; color: rgba(255,255,255,0.45); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; }
+nav ul a:hover { color: var(--white); }
+.nav-enroll {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid var(--line);
+  padding: 9px 22px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: border-color 0.2s;
+}
+
+/* HERO */
+.hero {
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  padding: 100px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--line);
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.hero-eyebrow::before { content: ''; display:block; width:32px; height:1px; background: var(--indigo); }
+.hero-headline {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-headline h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 90px;
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+.hero-headline h1 em {
+  font-style: italic;
+  color: var(--soft);
+}
+.hero-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+  max-width: 380px;
+  font-weight: 300;
+  margin-bottom: 48px;
+}
+.hero-cta-row { display: flex; align-items: center; gap: 32px; }
+.cta-main {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--off-white);
+  padding: 13px 30px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.cta-ghost {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cta-ghost::after { content: '→'; }
+
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy-light);
+}
+.hero-right-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 70% at 60% 40%, rgba(74,79,122,0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 90% 90%, rgba(45,16,96,0.3) 0%, transparent 60%);
+}
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+.hero-right-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 60px 56px;
+}
+.hero-big-w {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-55%);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 320px;
+  font-weight: 800;
+  color: rgba(74,79,122,0.08);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-stats-col { display: flex; flex-direction: column; gap: 0; }
+.hero-stat-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.hero-stat-row:last-child { border-bottom: 1px solid var(--line); }
+.hero-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--white);
+  min-width: 90px;
+}
+.hero-stat-num sup { font-size: 18px; color: var(--lilac); }
+.hero-stat-lbl { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); font-weight: 300; }
+
+/* MARQUEE STRIP */
+.marquee-strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  background: rgba(74,79,122,0.06);
+}
+.marquee-inner {
+  display: inline-flex;
+  gap: 0;
+  animation: marquee 22s linear infinite;
+}
+.marquee-item {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.marquee-item::after { content: '·'; color: var(--indigo); }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ABOUT */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+.about-left {
+  padding: 100px 72px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.about-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.about-label::before { content: '01'; font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--indigo); }
+.about-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+.about-left h2 em { font-style: italic; color: var(--soft); }
+.about-left p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.85;
+  font-weight: 300;
+  max-width: 420px;
+}
+.about-values {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 56px;
+}
+.about-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+.about-value:last-child { border-bottom: 1px solid var(--line); }
+.about-value span { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-style: italic; color: var(--indigo); font-weight: 400; letter-spacing: 0.06em; text-transform: none; }
+.about-right {
+  background: var(--navy-light);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-right-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(74,79,122,0.15) 0%, transparent 70%);
+}
+.about-card {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 60px 48px;
+}
+.about-card-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 140px;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.about-card-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--soft);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  border: 1px solid var(--line);
+  padding: 40px 48px;
+  border-radius: 2px;
+  max-width: 320px;
+  position: relative;
+}
+.about-card-main strong { display:block; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lilac); margin-bottom: 16px; }
+
+/* COURSES */
+.courses {
+  padding: 120px 72px;
+  border-top: 1px solid var(--line);
+}
+.courses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+}
+.courses-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.courses-label::before { content: '02'; font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--indigo); }
+.courses-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.courses-header h2 em { font-style: italic; color: var(--soft); }
+.courses-header-right { font-size: 12px; color: rgba(255,255,255,0.3); max-width: 220px; text-align: right; line-height: 1.7; font-weight: 300; letter-spacing: 0.04em; }
+
+.courses-table { width: 100%; }
+.course-row {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 1fr 120px;
+  align-items: center;
+  gap: 32px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  transition: background 0.2s;
+}
+.course-row:last-child { border-bottom: 1px solid var(--line); }
+.course-row:hover { background: rgba(74,79,122,0.05); }
+.course-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--indigo);
+  margin-right: 4px;
+}
+.course-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.course-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.6; font-weight: 300; }
+.course-duration { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--indigo); text-align: center; }
+.course-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--white);
+  text-align: right;
+}
+.course-price small { font-size: 11px; color: var(--indigo); font-family: 'Barlow', sans-serif; }
+.course-cta {
+  text-align: right;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 2px;
+  white-space: nowrap;
+  display: inline-block;
+  transition: color 0.2s, border-color 0.2s;
+}
+.course-row.featured .course-cta {
+  background: var(--off-white);
+  color: var(--navy);
+  border-color: var(--off-white);
+}
+.course-row.featured .course-name { color: var(--soft); }
+
+/* TESTIMONIALS */
+.testimonials {
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.testi-left {
+  padding: 100px 72px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.testi-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.testi-label::before { content: '03'; font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--indigo); }
+.testi-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.testi-left h2 em { font-style: italic; color: var(--soft); }
+.testi-count {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-top: 40px;
+}
+.testi-right {
+  padding: 100px 72px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.testi-card {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--line);
+}
+.testi-card:first-child { padding-top: 0; }
+.testi-card blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  margin-bottom: 24px;
+}
+.testi-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.testi-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--indigo), var(--lilac));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.testi-name { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; }
+.testi-role { font-size: 10px; color: var(--indigo); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+.testi-stars { margin-left: auto; font-size: 11px; color: var(--lilac); letter-spacing: 2px; }
+
+/* CONTACT */
+.contact {
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.contact-left {
+  padding: 100px 72px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.contact-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.contact-label::before { content: '04'; font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--indigo); }
+.contact-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+.contact-left h2 em { font-style: italic; color: var(--soft); }
+.contact-left p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.85; font-weight: 300; max-width: 340px; }
+.contact-details { margin-top: 56px; display: flex; flex-direction: column; gap: 0; }
+.contact-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.contact-detail:last-child { border-bottom: 1px solid var(--line); }
+.contact-detail .lbl { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--indigo); }
+.contact-detail .val { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+
+.contact-right {
+  padding: 100px 72px;
+  background: var(--navy-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-form { display: flex; flex-direction: column; gap: 0; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.field { display: flex; flex-direction: column; border-bottom: 1px solid var(--line); padding: 16px 0; margin-bottom: 0; }
+.field label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--indigo); margin-bottom: 10px; }
+.field input, .field select, .field textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  padding: 0;
+}
+.field textarea { resize: none; height: 60px; }
+.field select { cursor: pointer; }
+.field select option { background: var(--navy); }
+.form-submit {
+  margin-top: 36px;
+  background: var(--off-white);
+  color: var(--navy);
+  border: none;
+  padding: 14px 32px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  align-self: flex-start;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 32px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--navy);
+}
+.footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; color: rgba(255,255,255,0.3); }
+.footer-links { display: flex; gap: 32px; }
+.footer-links a { font-size: 10px; color: rgba(255,255,255,0.2); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; }
+.footer-copy { font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+
+/* ── ADMIN ── */
+.nav-admin-btn {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(139,143,200,0.5);
+  border: 1px solid rgba(74,79,122,0.25);
+  padding: 7px 16px;
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: color 0.2s, border-color 0.2s;
+  margin-left: 12px;
+}
+.nav-admin-btn:hover { color: var(--lilac); border-color: rgba(139,143,200,0.4); }
+.nav-admin-btn svg { opacity: 0.6; }
+
+/* Login Modal */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7,17,31,0.88);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+}
+.admin-modal-box {
+  background: #0d1828;
+  border: 1px solid rgba(74,79,122,0.3);
+  border-radius: 4px;
+  width: 420px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+}
+.admin-modal-header {
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin-modal-header span {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  font-weight: 500;
+}
+.admin-modal-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.25);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  font-family: sans-serif;
+  transition: color 0.2s;
+}
+.admin-modal-close:hover { color: rgba(255,255,255,0.6); }
+.admin-modal-body {
+  padding: 52px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.admin-lock-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(74,79,122,0.12);
+  border: 1px solid rgba(74,79,122,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.admin-modal-body > p {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-top: -12px;
+}
+.admin-field-wrap {
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+}
+.admin-field-wrap label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 10px;
+}
+.admin-field-wrap input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+}
+.admin-unlock-btn {
+  width: 100%;
+  background: var(--off-white);
+  color: var(--navy);
+  border: none;
+  padding: 14px 24px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 0.2s;
+}
+.admin-unlock-btn:hover { opacity: 0.88; }
+.admin-error-msg {
+  font-size: 11px;
+  color: #ff7070;
+  letter-spacing: 0.08em;
+  display: none;
+  margin-top: -16px;
+}
+.admin-hint {
+  font-size: 10px;
+  color: rgba(74,79,122,0.7);
+  letter-spacing: 0.08em;
+  margin-top: -16px;
+}
+
+/* Admin Dashboard */
+.admin-dashboard {
+  position: fixed;
+  inset: 0;
+  background: #060e1a;
+  z-index: 9990;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Barlow', sans-serif;
+}
+.admin-topbar {
+  height: 60px;
+  background: #0b1625;
+  border-bottom: 1px solid rgba(74,79,122,0.18);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  gap: 20px;
+  flex-shrink: 0;
+}
+.admin-topbar-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.admin-topbar-sep { width: 1px; height: 22px; background: rgba(74,79,122,0.3); }
+.admin-topbar-title {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.admin-topbar-badge {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--lilac);
+  padding: 4px 11px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+.admin-topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.admin-owner-chip {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.admin-owner-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--indigo), var(--lilac));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--white);
+}
+.admin-logout-btn {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  background: none;
+  border: 1px solid rgba(74,79,122,0.2);
+  padding: 7px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  transition: all 0.2s;
+}
+.admin-logout-btn:hover { color: rgba(255,255,255,0.5); border-color: rgba(74,79,122,0.4); }
+
+.admin-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 228px;
+  background: #080f1c;
+  border-right: 1px solid rgba(74,79,122,0.12);
+  flex-shrink: 0;
+  padding: 28px 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.admin-sidebar-section {
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(74,79,122,0.55);
+  padding: 0 24px;
+  margin: 24px 0 8px;
+}
+.admin-sidebar-section:first-child { margin-top: 0; }
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 24px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: all 0.18s;
+  border-left: 2px solid transparent;
+  user-select: none;
+}
+.admin-nav-item:hover { color: rgba(255,255,255,0.65); background: rgba(74,79,122,0.07); }
+.admin-nav-item.active { color: var(--white); background: rgba(74,79,122,0.13); border-left-color: var(--lilac); }
+.admin-nav-icon { font-size: 15px; width: 20px; text-align: center; }
+.admin-nav-badge {
+  margin-left: auto;
+  font-size: 9px;
+  background: rgba(139,143,200,0.2);
+  color: var(--lilac);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Main content */
+.admin-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 44px 52px;
+}
+.admin-page { display: none; }
+.admin-page.active { display: block; }
+
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.admin-page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--white);
+}
+.admin-page-title em { font-style: italic; color: var(--soft); }
+.admin-page-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.06em;
+  margin-top: 8px;
+}
+.admin-add-btn {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border-radius: 2px;
+  border: none;
+  background: var(--off-white);
+  color: var(--navy);
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Stats */
+.admin-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(74,79,122,0.12);
+  border: 1px solid rgba(74,79,122,0.12);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.admin-stat {
+  background: #0a1520;
+  padding: 24px 28px;
+}
+.admin-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+}
+.admin-stat-num sup { font-size: 16px; color: var(--lilac); }
+.admin-stat-lbl {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-top: 7px;
+}
+
+/* Table */
+.admin-table-wrap {
+  border: 1px solid rgba(74,79,122,0.14);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admin-table thead tr { background: rgba(74,79,122,0.1); }
+.admin-table th {
+  padding: 13px 20px;
+  text-align: left;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(74,79,122,0.14);
+  white-space: nowrap;
+}
+.admin-table td {
+  padding: 15px 20px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(74,79,122,0.07);
+  vertical-align: middle;
+}
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: rgba(74,79,122,0.04); color: rgba(255,255,255,0.65); }
+.admin-table td strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+/* Badges */
+.badge {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.badge-new    { background: rgba(74,79,122,0.25);  color: var(--lilac); }
+.badge-active { background: rgba(40,200,80,0.13);  color: #5dd68c; }
+.badge-done   { background: rgba(93,160,255,0.13); color: #7ab8ff; }
+.badge-pending{ background: rgba(255,189,46,0.13); color: #ffd466; }
+.badge-replied{ background: rgba(40,200,80,0.1);   color: #5dd68c; }
+.badge-live   { background: rgba(40,200,80,0.13);  color: #5dd68c; }
+.badge-draft  { background: rgba(74,79,122,0.2);   color: rgba(255,255,255,0.4); }
+
+/* Buttons */
+.tbl-btn {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(74,79,122,0.2);
+  background: transparent;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  font-family: 'Barlow', sans-serif;
+  transition: all 0.18s;
+  margin-right: 4px;
+}
+.tbl-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.tbl-btn.danger:hover { color: #ff7070; border-color: rgba(255,112,112,0.3); }
+
+/* Progress bar */
+.prog-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.prog-bar {
+  width: 80px;
+  height: 3px;
+  background: rgba(74,79,122,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--indigo), var(--lilac));
+  border-radius: 2px;
+}
+.prog-pct { font-size: 11px; color: rgba(255,255,255,0.4); min-width: 32px; }
+
+/* Recent activity (overview) */
+.admin-activity-list { display: flex; flex-direction: column; gap: 0; }
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(74,79,122,0.08);
+}
+.activity-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.activity-dot.green  { background: #5dd68c; }
+.activity-dot.blue   { background: #7ab8ff; }
+.activity-dot.purple { background: var(--lilac); }
+.activity-dot.yellow { background: #ffd466; }
+.activity-text { font-size: 12px; color: rgba(255,255,255,0.45); flex: 1; }
+.activity-text strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+.activity-time { font-size: 10px; color: rgba(74,79,122,0.7); letter-spacing: 0.06em; }
+</style>
+</head>
+<body>
+
+<div class="mockup-bar">
+  <span>Design Concept v2 —</span> <strong>W.I.S.E. Worthy Institute of Sales Education</strong> &nbsp;·&nbsp; Sleek / Minimal Direction &nbsp;·&nbsp; Placeholder content
+</div>
+
+<div class="browser">
+  <div class="browser-bar">
+    <div class="bdots"><span></span><span></span><span></span></div>
+    <div class="burl">www.wiseinstitute.com</div>
+  </div>
+
+  <div class="site">
+
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">
+        <div class="nav-logo-mark">W.I.S.E.</div>
+        <div class="nav-logo-sep"></div>
+        <div class="nav-logo-sub">Worthy Institute of Sales Education</div>
+      </div>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <a href="#" class="nav-enroll">Enroll Now</a>
+      <button class="nav-admin-btn" onclick="openAdminModal()">
+        <svg width="11" height="13" viewBox="0 0 11 13" fill="none"><rect x="1" y="5" width="9" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke="currentColor" stroke-width="1.2"/></svg>
+        Admin
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Powered by Worthy &amp; Associates Real Estate</div>
+        <div class="hero-headline">
+          <h1>Where<br/><em>Professionals</em><br/>Are Built.</h1>
+          <p class="hero-sub">License Training · Certifications · Mentorship — built on real industry experience, designed to launch real careers.</p>
+          <div class="hero-cta-row">
+            <a href="#" class="cta-main">Explore Courses</a>
+            <a href="#" class="cta-ghost">Our Story</a>
+          </div>
+        </div>
+        <div style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.15);">Luxury Standards. Real Results.</div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-right-bg"></div>
+        <div class="hero-grid-overlay"></div>
+        <div class="hero-big-w">W</div>
+        <div class="hero-right-content">
+          <div class="hero-stats-col">
+            <div class="hero-stat-row">
+              <div class="hero-stat-num">500<sup>+</sup></div>
+              <div class="hero-stat-lbl">Students Enrolled</div>
+            </div>
+            <div class="hero-stat-row">
+              <div class="hero-stat-num">98<sup>%</sup></div>
+              <div class="hero-stat-lbl">Exam Pass Rate</div>
+            </div>
+            <div class="hero-stat-row">
+              <div class="hero-stat-num">10<sup>+</sup></div>
+              <div class="hero-stat-lbl">Years of Experience</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+      <div class="marquee-inner">
+        <span class="marquee-item">License Training</span>
+        <span class="marquee-item">Certifications</span>
+        <span class="marquee-item">Mentorship</span>
+        <span class="marquee-item">Worthy &amp; Associates</span>
+        <span class="marquee-item">Real Estate Careers</span>
+        <span class="marquee-item">Professional Development</span>
+        <span class="marquee-item">License Training</span>
+        <span class="marquee-item">Certifications</span>
+        <span class="marquee-item">Mentorship</span>
+        <span class="marquee-item">Worthy &amp; Associates</span>
+        <span class="marquee-item">Real Estate Careers</span>
+        <span class="marquee-item">Professional Development</span>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about">
+      <div class="about-left">
+        <div>
+          <div class="about-label">About W.I.S.E.</div>
+          <h2>More Than<br/>A <em>School</em></h2>
+          <p>A strategic extension of Worthy &amp; Associates Real Estate — training future professionals under the same standards of excellence, ethics, and market presence that define the industry's best.</p>
+        </div>
+        <div class="about-values">
+          <div class="about-value">License Training <span>State-approved curriculum</span></div>
+          <div class="about-value">Certifications <span>Industry-recognized credentials</span></div>
+          <div class="about-value">Mentorship <span>Guided by active agents</span></div>
+          <div class="about-value">Placement Support <span>Your first career move</span></div>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="about-right-bg"></div>
+        <div class="about-card">
+          <div class="about-card-main">
+            <strong>W.I.S.E.</strong>
+            "More than a school — it is a growth platform that combines practical knowledge with real industry insight."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section class="courses">
+      <div class="courses-header">
+        <div>
+          <div class="courses-label">Our Programs</div>
+          <h2>Choose Your<br/><em>Path</em></h2>
+        </div>
+        <p class="courses-header-right">Every program designed by active agents with real market experience.</p>
+      </div>
+      <div class="courses-table">
+        <div class="course-row">
+          <div><span class="course-num">01 —</span><span class="course-name">License Prep</span></div>
+          <div class="course-desc">Everything you need to pass your state licensing exam on the first try. Comprehensive, structured, and proven.</div>
+          <div class="course-duration">8 Weeks</div>
+          <div class="course-price">$499 <small>/ course</small></div>
+          <a href="#" class="course-cta">Enroll →</a>
+        </div>
+        <div class="course-row featured">
+          <div><span class="course-num">02 —</span><span class="course-name">Agent Mastery</span></div>
+          <div class="course-desc">From license to your first closing — a full career launch program with dedicated mentorship and live deal support.</div>
+          <div class="course-duration">12 Weeks</div>
+          <div class="course-price">$999 <small>/ course</small></div>
+          <a href="#" class="course-cta">Enroll →</a>
+        </div>
+        <div class="course-row">
+          <div><span class="course-num">03 —</span><span class="course-name">Investment &amp; Contracts</span></div>
+          <div class="course-desc">A deep dive into contracts, investment strategy, and closing deals with precision at a professional level.</div>
+          <div class="course-duration">6 Weeks</div>
+          <div class="course-price">$699 <small>/ course</small></div>
+          <a href="#" class="course-cta">Enroll →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+      <div class="testi-left">
+        <div>
+          <div class="testi-label">Student Stories</div>
+          <h2>Real Results,<br/><em>Real People</em></h2>
+        </div>
+        <div class="testi-count">500+ Graduates &amp; Counting</div>
+      </div>
+      <div class="testi-right">
+        <div class="testi-card">
+          <blockquote>"W.I.S.E. didn't just teach me how to pass a test — it taught me how to think like a professional. Within 3 months of graduating I closed my first deal."</blockquote>
+          <div class="testi-meta">
+            <div class="testi-avatar">JM</div>
+            <div><div class="testi-name">Jordan Mitchell</div><div class="testi-role">Licensed Agent · Miami, FL</div></div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <blockquote>"The instructors are actual agents working in the field. That real-world perspective is something you simply can't get anywhere else."</blockquote>
+          <div class="testi-meta">
+            <div class="testi-avatar">SR</div>
+            <div><div class="testi-name">Sofia Reyes</div><div class="testi-role">New Agent · Orlando, FL</div></div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <blockquote>"I passed my exam on the first try and had a job lined up before I even graduated. The mentorship alone was worth every penny."</blockquote>
+          <div class="testi-meta">
+            <div class="testi-avatar">DW</div>
+            <div><div class="testi-name">David Williams</div><div class="testi-role">Realtor · Tampa, FL</div></div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact">
+      <div class="contact-left">
+        <div>
+          <div class="contact-label">Get Started</div>
+          <h2>Start Your<br/><em>Journey</em></h2>
+          <p>Ready to build your future in real estate? An advisor will reach out within 24 hours of your inquiry.</p>
+        </div>
+        <div class="contact-details">
+          <div class="contact-detail"><span class="lbl">Phone</span><span class="val">+1 (305) 555-9821</span></div>
+          <div class="contact-detail"><span class="lbl">Email</span><span class="val">info@wiseinstitute.com</span></div>
+          <div class="contact-detail"><span class="lbl">Web</span><span class="val">www.wiseinstitute.com</span></div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="field"><label>First Name</label><input type="text" placeholder="Jordan"/></div>
+            <div class="field"><label>Last Name</label><input type="text" placeholder="Mitchell"/></div>
+          </div>
+          <div class="field"><label>Email Address</label><input type="email" placeholder="jordan@email.com"/></div>
+          <div class="field"><label>Phone Number</label><input type="tel" placeholder="(305) 555-0100"/></div>
+          <div class="field"><label>Program of Interest</label>
+            <select>
+              <option>Real Estate License Prep</option>
+              <option>Agent Mastery Program</option>
+              <option>Investment &amp; Contracts</option>
+            </select>
+          </div>
+          <div class="field"><label>Message</label><textarea placeholder="Tell us about your goals..."></textarea></div>
+          <button class="form-submit">Send Inquiry →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">W.I.S.E. — Worthy Institute of Sales Education</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Worthy Institute of Sales Education</div>
+    </footer>
+
+  </div>
+</div>
+
+<div style="text-align:center;padding:20px;font-size:10px;color:#2a2f4a;letter-spacing:0.12em;text-transform:uppercase;">Mockup v2 · Minimal Direction · Placeholder content — not final</div>
+
+<!-- ══ ADMIN LOGIN MODAL ══ -->
+<div id="adminModal" class="admin-modal-overlay" style="display:none">
+  <div class="admin-modal-box">
+    <div class="admin-modal-header">
+      <span>W.I.S.E. — Owner Access</span>
+      <button class="admin-modal-close" onclick="closeAdminModal()">✕</button>
+    </div>
+    <div class="admin-modal-body">
+      <div class="admin-lock-wrap">🔐</div>
+      <p>Admin Login</p>
+      <div class="admin-field-wrap">
+        <label>Password</label>
+        <input type="password" id="adminPassword" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')tryAdminLogin()"/>
+      </div>
+      <div id="adminError" class="admin-error-msg">Incorrect password. Please try again.</div>
+      <button class="admin-unlock-btn" onclick="tryAdminLogin()">Unlock Admin Panel →</button>
+      <p class="admin-hint">Hint: wise2025</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN DASHBOARD ══ -->
+<div id="adminDashboard" class="admin-dashboard" style="display:none">
+
+  <!-- Top Bar -->
+  <div class="admin-topbar">
+    <div class="admin-topbar-logo">W.I.S.E.</div>
+    <div class="admin-topbar-sep"></div>
+    <div class="admin-topbar-title">Admin Dashboard</div>
+    <div class="admin-topbar-badge">Owner</div>
+    <div class="admin-topbar-right">
+      <div class="admin-owner-chip">
+        <div class="admin-owner-avatar">WA</div>
+        Worthy &amp; Associates
+      </div>
+      <button class="admin-logout-btn" onclick="adminLogout()">Log Out</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-section">Overview</div>
+      <div class="admin-nav-item active" onclick="showAdminPage('overview',this)">
+        <span class="admin-nav-icon">📊</span> Dashboard
+      </div>
+
+      <div class="admin-sidebar-section">Management</div>
+      <div class="admin-nav-item" onclick="showAdminPage('courses',this)">
+        <span class="admin-nav-icon">📚</span> Courses
+      </div>
+      <div class="admin-nav-item" onclick="showAdminPage('enrollments',this)">
+        <span class="admin-nav-icon">🎓</span> Enrollments
+        <span class="admin-nav-badge">14</span>
+      </div>
+      <div class="admin-nav-item" onclick="showAdminPage('inquiries',this)">
+        <span class="admin-nav-icon">📩</span> Inquiries
+        <span class="admin-nav-badge">5</span>
+      </div>
+      <div class="admin-nav-item" onclick="showAdminPage('completion',this)">
+        <span class="admin-nav-icon">✅</span> Completion
+      </div>
+
+      <div class="admin-sidebar-section">Settings</div>
+      <div class="admin-nav-item" onclick="showAdminPage('settings',this)">
+        <span class="admin-nav-icon">⚙️</span> Site Settings
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="admin-main">
+
+      <!-- ── OVERVIEW ── -->
+      <div id="page-overview" class="admin-page active">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Good morning, <em>Worthy</em></div>
+            <div class="admin-page-sub">Here's what's happening at W.I.S.E. today — May 25, 2025</div>
+          </div>
+        </div>
+        <div class="admin-stats-row">
+          <div class="admin-stat">
+            <div class="admin-stat-num">514<sup>+</sup></div>
+            <div class="admin-stat-lbl">Total Students</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num">14</div>
+            <div class="admin-stat-lbl">Active Enrollments</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num">5</div>
+            <div class="admin-stat-lbl">New Inquiries</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num">3</div>
+            <div class="admin-stat-lbl">Courses Offered</div>
+          </div>
+        </div>
+        <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--indigo);margin-bottom:20px;">Recent Activity</div>
+        <div class="admin-activity-list">
+          <div class="activity-item">
+            <div class="activity-dot green"></div>
+            <div class="activity-text"><strong>Marcus Johnson</strong> enrolled in Agent Mastery Program</div>
+            <div class="activity-time">2 hrs ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot blue"></div>
+            <div class="activity-text"><strong>Alicia Torres</strong> completed License Prep — Certificate issued</div>
+            <div class="activity-time">5 hrs ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot purple"></div>
+            <div class="activity-text">New inquiry from <strong>Devon Park</strong> — Investment &amp; Contracts</div>
+            <div class="activity-time">7 hrs ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot yellow"></div>
+            <div class="activity-text"><strong>Sofia Reyes</strong> is at 80% — on track to complete Agent Mastery</div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot green"></div>
+            <div class="activity-text"><strong>James Carter</strong> enrolled in Investment &amp; Contracts</div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot purple"></div>
+            <div class="activity-text">New inquiry from <strong>Priya Nair</strong> — License Prep</div>
+            <div class="activity-time">2 days ago</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── COURSES ── -->
+      <div id="page-courses" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Manage <em>Courses</em></div>
+            <div class="admin-page-sub">Add, edit, or archive course offerings</div>
+          </div>
+          <button class="admin-add-btn">+ Add Course</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Course Name</th>
+                <th>Duration</th>
+                <th>Price</th>
+                <th>Enrolled</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--indigo);font-family:'Cormorant Garamond',serif;font-style:italic">01</td>
+                <td><strong>License Prep</strong></td>
+                <td>8 Weeks</td>
+                <td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6)">$499</td>
+                <td>214</td>
+                <td><span class="badge badge-live">Live</span></td>
+                <td>
+                  <button class="tbl-btn">Edit</button>
+                  <button class="tbl-btn danger">Archive</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="color:var(--indigo);font-family:'Cormorant Garamond',serif;font-style:italic">02</td>
+                <td><strong>Agent Mastery Program</strong></td>
+                <td>12 Weeks</td>
+                <td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6)">$999</td>
+                <td>187</td>
+                <td><span class="badge badge-live">Live</span></td>
+                <td>
+                  <button class="tbl-btn">Edit</button>
+                  <button class="tbl-btn danger">Archive</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="color:var(--indigo);font-family:'Cormorant Garamond',serif;font-style:italic">03</td>
+                <td><strong>Investment &amp; Contracts</strong></td>
+                <td>6 Weeks</td>
+                <td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6)">$699</td>
+                <td>113</td>
+                <td><span class="badge badge-live">Live</span></td>
+                <td>
+                  <button class="tbl-btn">Edit</button>
+                  <button class="tbl-btn danger">Archive</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="color:var(--indigo);font-family:'Cormorant Garamond',serif;font-style:italic">04</td>
+                <td><strong>Advanced Negotiation</strong> <span style="font-size:9px;color:var(--indigo);letter-spacing:.1em">(Coming Soon)</span></td>
+                <td>4 Weeks</td>
+                <td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.6)">$399</td>
+                <td>—</td>
+                <td><span class="badge badge-draft">Draft</span></td>
+                <td>
+                  <button class="tbl-btn">Edit</button>
+                  <button class="tbl-btn">Publish</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── ENROLLMENTS ── -->
+      <div id="page-enrollments" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Student <em>Enrollments</em></div>
+            <div class="admin-page-sub">14 active enrollments across all programs</div>
+          </div>
+          <button class="admin-add-btn">+ Manual Enroll</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Email</th>
+                <th>Program</th>
+                <th>Enrolled</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Marcus Johnson</strong></td>
+                <td>marcus.j@email.com</td>
+                <td>Agent Mastery Program</td>
+                <td>May 25, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td><button class="tbl-btn">View</button><button class="tbl-btn danger">Remove</button></td>
+              </tr>
+              <tr>
+                <td><strong>Sofia Reyes</strong></td>
+                <td>sofia.r@email.com</td>
+                <td>Agent Mastery Program</td>
+                <td>Apr 10, 2025</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td><button class="tbl-btn">View</button><button class="tbl-btn danger">Remove</button></td>
+              </tr>
+              <tr>
+                <td><strong>James Carter</strong></td>
+                <td>j.carter@email.com</td>
+                <td>Investment &amp; Contracts</td>
+                <td>May 24, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td><button class="tbl-btn">View</button><button class="tbl-btn danger">Remove</button></td>
+              </tr>
+              <tr>
+                <td><strong>Jordan Mitchell</strong></td>
+                <td>jordan.m@email.com</td>
+                <td>License Prep</td>
+                <td>Mar 2, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td><button class="tbl-btn">View</button><button class="tbl-btn danger">Remove</button></td>
+              </tr>
+              <tr>
+                <td><strong>Priya Nair</strong></td>
+                <td>p.nair@email.com</td>
+                <td>License Prep</td>
+                <td>May 18, 2025</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td><button class="tbl-btn">View</button><button class="tbl-btn danger">Remove</button></td>
+              </tr>
+              <tr>
+                <td><strong>David Williams</strong></td>
+                <td>d.williams@email.com</td>
+                <td>Agent Mastery Program</td>
+                <td>Jan 15, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td><button class="tbl-btn">View</button><button class="tbl-btn danger">Remove</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── INQUIRIES ── -->
+      <div id="page-inquiries" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Contact <em>Inquiries</em></div>
+            <div class="admin-page-sub">5 unread inquiries — respond within 24 hours</div>
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Program Interest</th>
+                <th>Message Preview</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Devon Park</strong></td>
+                <td>devon.p@email.com</td>
+                <td>Investment &amp; Contracts</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"I'm interested in learning about contract law..."</td>
+                <td>May 25, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td><button class="tbl-btn">Reply</button><button class="tbl-btn">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Priya Nair</strong></td>
+                <td>p.nair@email.com</td>
+                <td>License Prep</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"When does the next cohort start?"</td>
+                <td>May 23, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td><button class="tbl-btn">Reply</button><button class="tbl-btn">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Aaliyah Brooks</strong></td>
+                <td>aaliyah.b@email.com</td>
+                <td>Agent Mastery Program</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"Do you offer payment plans for the program?"</td>
+                <td>May 22, 2025</td>
+                <td><span class="badge badge-new">New</span></td>
+                <td><button class="tbl-btn">Reply</button><button class="tbl-btn">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Terrence Mills</strong></td>
+                <td>t.mills@email.com</td>
+                <td>License Prep</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"I'd love to learn more about the mentorship..."</td>
+                <td>May 20, 2025</td>
+                <td><span class="badge badge-replied">Replied</span></td>
+                <td><button class="tbl-btn">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Camille Dubois</strong></td>
+                <td>c.dubois@email.com</td>
+                <td>Investment &amp; Contracts</td>
+                <td style="color:rgba(255,255,255,0.3);font-style:italic;max-width:200px">"How experienced are the instructors in..."</td>
+                <td>May 18, 2025</td>
+                <td><span class="badge badge-replied">Replied</span></td>
+                <td><button class="tbl-btn">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── COMPLETION ── -->
+      <div id="page-completion" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Course <em>Completion</em></div>
+            <div class="admin-page-sub">Track progress and issue certificates</div>
+          </div>
+        </div>
+        <div class="admin-stats-row" style="grid-template-columns:repeat(3,1fr)">
+          <div class="admin-stat">
+            <div class="admin-stat-num">98<sup>%</sup></div>
+            <div class="admin-stat-lbl">Exam Pass Rate</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num">487</div>
+            <div class="admin-stat-lbl">Certificates Issued</div>
+          </div>
+          <div class="admin-stat">
+            <div class="admin-stat-num">14</div>
+            <div class="admin-stat-lbl">Currently In Progress</div>
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Program</th>
+                <th>Progress</th>
+                <th>Started</th>
+                <th>Est. Completion</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sofia Reyes</strong></td>
+                <td>Agent Mastery Program</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:80%"></div></div>
+                    <span class="prog-pct">80%</span>
+                  </div>
+                </td>
+                <td>Apr 10, 2025</td>
+                <td>Jun 30, 2025</td>
+                <td><span class="badge badge-active">On Track</span></td>
+                <td><button class="tbl-btn">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Priya Nair</strong></td>
+                <td>License Prep</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:35%"></div></div>
+                    <span class="prog-pct">35%</span>
+                  </div>
+                </td>
+                <td>May 18, 2025</td>
+                <td>Jul 12, 2025</td>
+                <td><span class="badge badge-active">On Track</span></td>
+                <td><button class="tbl-btn">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Marcus Johnson</strong></td>
+                <td>Agent Mastery Program</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:5%"></div></div>
+                    <span class="prog-pct">5%</span>
+                  </div>
+                </td>
+                <td>May 25, 2025</td>
+                <td>Aug 17, 2025</td>
+                <td><span class="badge badge-new">Just Started</span></td>
+                <td><button class="tbl-btn">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Alicia Torres</strong></td>
+                <td>License Prep</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+                    <span class="prog-pct">100%</span>
+                  </div>
+                </td>
+                <td>Mar 1, 2025</td>
+                <td>May 25, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td><button class="tbl-btn">Certificate</button></td>
+              </tr>
+              <tr>
+                <td><strong>Jordan Mitchell</strong></td>
+                <td>License Prep</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+                    <span class="prog-pct">100%</span>
+                  </div>
+                </td>
+                <td>Mar 2, 2025</td>
+                <td>Apr 27, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td><button class="tbl-btn">Certificate</button></td>
+              </tr>
+              <tr>
+                <td><strong>David Williams</strong></td>
+                <td>Agent Mastery Program</td>
+                <td>
+                  <div class="prog-wrap">
+                    <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+                    <span class="prog-pct">100%</span>
+                  </div>
+                </td>
+                <td>Jan 15, 2025</td>
+                <td>Apr 8, 2025</td>
+                <td><span class="badge badge-done">Completed</span></td>
+                <td><button class="tbl-btn">Certificate</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS ── -->
+      <div id="page-settings" class="admin-page">
+        <div class="admin-page-header">
+          <div>
+            <div class="admin-page-title">Site <em>Settings</em></div>
+            <div class="admin-page-sub">Manage public-facing content and contact details</div>
+          </div>
+          <button class="admin-add-btn">Save Changes</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(74,79,122,0.12);border:1px solid rgba(74,79,122,0.12);border-radius:3px;overflow:hidden;margin-bottom:32px">
+          <div style="background:#0a1520;padding:28px">
+            <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--indigo);margin-bottom:16px">Contact Phone</div>
+            <input style="background:transparent;border:none;border-bottom:1px solid var(--line);outline:none;color:rgba(255,255,255,.7);font-family:'Barlow',sans-serif;font-size:14px;width:100%;padding:8px 0;font-weight:300" value="+1 (305) 555-9821"/>
+          </div>
+          <div style="background:#0a1520;padding:28px">
+            <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--indigo);margin-bottom:16px">Contact Email</div>
+            <input style="background:transparent;border:none;border-bottom:1px solid var(--line);outline:none;color:rgba(255,255,255,.7);font-family:'Barlow',sans-serif;font-size:14px;width:100%;padding:8px 0;font-weight:300" value="info@wiseinstitute.com"/>
+          </div>
+          <div style="background:#0a1520;padding:28px">
+            <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--indigo);margin-bottom:16px">Hero Headline</div>
+            <input style="background:transparent;border:none;border-bottom:1px solid var(--line);outline:none;color:rgba(255,255,255,.7);font-family:'Barlow',sans-serif;font-size:14px;width:100%;padding:8px 0;font-weight:300" value="Where Professionals Are Built."/>
+          </div>
+          <div style="background:#0a1520;padding:28px">
+            <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--indigo);margin-bottom:16px">Total Students (display)</div>
+            <input style="background:transparent;border:none;border-bottom:1px solid var(--line);outline:none;color:rgba(255,255,255,.7);font-family:'Barlow',sans-serif;font-size:14px;width:100%;padding:8px 0;font-weight:300" value="500+"/>
+          </div>
+        </div>
+        <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--indigo);margin-bottom:16px">Testimonials Visibility</div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Student</th><th>Quote Preview</th><th>Visible</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Jordan Mitchell</strong></td>
+                <td style="color:rgba(255,255,255,.3);font-style:italic">"W.I.S.E. didn't just teach me how to pass a test..."</td>
+                <td><span class="badge badge-live">Visible</span></td>
+                <td><button class="tbl-btn">Edit</button><button class="tbl-btn danger">Hide</button></td>
+              </tr>
+              <tr>
+                <td><strong>Sofia Reyes</strong></td>
+                <td style="color:rgba(255,255,255,.3);font-style:italic">"The instructors are actual agents working in the field..."</td>
+                <td><span class="badge badge-live">Visible</span></td>
+                <td><button class="tbl-btn">Edit</button><button class="tbl-btn danger">Hide</button></td>
+              </tr>
+              <tr>
+                <td><strong>David Williams</strong></td>
+                <td style="color:rgba(255,255,255,.3);font-style:italic">"I passed my exam on the first try..."</td>
+                <td><span class="badge badge-live">Visible</span></td>
+                <td><button class="tbl-btn">Edit</button><button class="tbl-btn danger">Hide</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /admin-main -->
+  </div><!-- /admin-body -->
+</div><!-- /adminDashboard -->
+
+<script>
+  const ADMIN_PASS = 'wise2025';
+
+  function openAdminModal() {
+    document.getElementById('adminModal').style.display = 'flex';
+    setTimeout(() => document.getElementById('adminPassword').focus(), 60);
+  }
+  function closeAdminModal() {
+    document.getElementById('adminModal').style.display = 'none';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminError').style.display = 'none';
+  }
+  function tryAdminLogin() {
+    const pw = document.getElementById('adminPassword').value;
+    if (pw === ADMIN_PASS) {
+      closeAdminModal();
+      document.getElementById('adminDashboard').style.display = 'flex';
+    } else {
+      document.getElementById('adminError').style.display = 'block';
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('adminPassword').focus();
+    }
+  }
+  function adminLogout() {
+    document.getElementById('adminDashboard').style.display = 'none';
+  }
+  function showAdminPage(page, el) {
+    document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    el.classList.add('active');
+  }
+  // Close modal on backdrop click
+  document.getElementById('adminModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAdminModal();
+  });
+</script>
+
+</body>
+</html>
