@@ -471,21 +471,52 @@ nav {
 .form-success {
   display: none;
   text-align: center;
-  padding: 64px 0;
+  padding: 64px 32px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: rgba(74,79,122,0.05);
 }
-.form-success .checkmark { font-size: 32px; margin-bottom: 16px; color: var(--lilac); }
-.form-success p {
+.form-success .checkmark {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(139,143,200,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--lilac);
+  margin: 0 auto 24px;
+}
+.form-success h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
+  font-size: 30px;
+  font-weight: 300;
   font-style: italic;
-  color: var(--soft);
-  margin-bottom: 10px;
+  color: var(--white);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.form-success p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 320px;
+  margin: 0 auto 32px;
+}
+.form-success .success-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--line);
+  margin: 0 auto 28px;
 }
 .form-success small {
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: 10px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--indigo);
+  display: block;
 }
 
 /* ── FOOTER ── */
@@ -681,12 +712,12 @@ footer {
 
     <div class="course-cards">
 
-      <!-- NC Pre-Licensing -->
-      <button class="course-card active" data-calendly="https://calendly.com/admin-worthyinstitute/nc-pre-licensing">
+      <!-- NC Pre-Licensing — Waitlist -->
+      <button class="course-card" id="prelicWaitlistBtn">
         <div class="course-card-price">$499 <small>/ all-inclusive</small></div>
-        <div class="course-card-tag">New License</div>
+        <div class="course-card-tag" style="color:#c97b7b;">Waitlist Only</div>
         <div class="course-card-name">NC Pre-Licensing</div>
-        <div class="course-card-desc">The state-required 75-hour course for anyone starting their real estate career in North Carolina. Covers all required topics — contracts, agency, finance, and NC law — with exam prep built in.</div>
+        <div class="course-card-desc">Not currently enrolling. Click below to join the waitlist and be notified when the next session opens.</div>
         <div class="course-card-meta">
           <span class="course-meta-tag">75 Hours</span>
           <span class="course-meta-tag">Exam Prep Included</span>
@@ -696,10 +727,10 @@ footer {
       </button>
 
       <!-- General Update CE -->
-      <button class="course-card" data-calendly="https://calendly.com/admin-worthyinstitute/in-person-genup-course-clone">
+      <button class="course-card active" data-calendly="https://calendly.com/admin-worthyinstitute/in-person-genup-course-clone">
         <div class="course-card-price">$49 <small>/ per session</small></div>
         <div class="course-card-tag">License Renewal</div>
-        <div class="course-card-name">General Update CE</div>
+        <div class="course-card-name">2025–2026 General Update CE</div>
         <div class="course-card-desc">The 4-hour annual continuing education course required for NC license renewal. Fully NCREC compliant and designed to be directly applicable to your day-to-day practice as an active broker.</div>
         <div class="course-card-meta">
           <span class="course-meta-tag">4 Hours</span>
@@ -711,13 +742,41 @@ footer {
 
     </div>
 
-    <div class="booking-embed-wrapper">
+    <!-- Calendly embed — shown for General Update CE -->
+    <div class="booking-embed-wrapper" id="calendlyWrapper">
       <div id="calendly-embed"
            class="calendly-inline-widget"
-           data-url="https://calendly.com/admin-worthyinstitute/nc-pre-licensing"
+           data-url="https://calendly.com/admin-worthyinstitute/in-person-genup-course-clone"
            style="min-width:320px;height:660px;">
       </div>
       <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
+
+    <!-- Waitlist panel — shown for NC Pre-Licensing -->
+    <div id="waitlistPanel" style="display:none; border:1px solid var(--line); border-radius:2px; padding:64px 48px; text-align:center; background: var(--navy-light);">
+      <div style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(139,143,200,0.3);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--lilac);margin:0 auto 24px;">✦</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;font-style:italic;color:var(--white);margin-bottom:12px;">Enrollment Opening Soon</h3>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.85;font-weight:300;max-width:360px;margin:0 auto 36px;">The NC Pre-Licensing course is not currently enrolling. Leave your name and email below and we'll reach out as soon as the next session opens.</p>
+      <form id="waitlistForm" action="https://formspree.io/f/mredryjo" method="POST" style="max-width:400px;margin:0 auto;text-align:left;">
+        <input type="hidden" name="_subject" value="NC Pre-Licensing Waitlist Request"/>
+        <div class="field">
+          <label for="wlName">Full Name</label>
+          <input id="wlName" name="Full Name" type="text" placeholder="Your full name" required/>
+        </div>
+        <div class="field">
+          <label for="wlEmail">Email Address</label>
+          <input id="wlEmail" name="Email" type="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="field">
+          <label for="wlPhone">Phone Number <span style="color:var(--indigo);font-size:8px;letter-spacing:0.1em;">OPTIONAL</span></label>
+          <input id="wlPhone" name="Phone" type="tel" placeholder="(000) 000-0000"/>
+        </div>
+        <button type="submit" class="form-submit" style="width:100%;text-align:center;margin-top:28px;">Join Waitlist →</button>
+      </form>
+      <div id="waitlistSuccess" style="display:none;padding:32px 0;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--soft);margin-bottom:8px;">You're on the list.</p>
+        <small style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--indigo);">We'll be in touch when enrollment opens.</small>
+      </div>
     </div>
 
   </div>
@@ -749,29 +808,33 @@ footer {
     </div>
 
     <div class="contact-right">
+      <div id="waitlistNote" style="display:none; background:rgba(74,79,122,0.1); border:1px solid var(--line); border-radius:2px; padding:14px 20px; margin-bottom:28px; font-size:12px; color:rgba(255,255,255,0.6); line-height:1.7;">
+        Interested in the <strong style="color:var(--soft); font-weight:500;">NC Pre-Licensing course</strong>? Fill out the form below and we'll reach out as soon as enrollment opens.
+      </div>
       <h3>Tell us about your goals.</h3>
-      <form class="contact-form" id="contactForm" novalidate>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mredryjo" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New Inquiry — W.I.S.E."/>
         <div class="form-row">
           <div class="field">
             <label for="firstName">First Name</label>
-            <input id="firstName" type="text" placeholder="Your first name" required/>
+            <input id="firstName" name="First Name" type="text" placeholder="Your first name" required/>
           </div>
           <div class="field">
             <label for="lastName">Last Name</label>
-            <input id="lastName" type="text" placeholder="Your last name"/>
+            <input id="lastName" name="Last Name" type="text" placeholder="Your last name"/>
           </div>
         </div>
         <div class="field">
           <label for="email">Email Address</label>
-          <input id="email" type="email" placeholder="your@email.com" required/>
+          <input id="email" name="Email" type="email" placeholder="your@email.com" required/>
         </div>
         <div class="field">
           <label for="phone">Phone Number</label>
-          <input id="phone" type="tel" placeholder="(000) 000-0000"/>
+          <input id="phone" name="Phone" type="tel" placeholder="(000) 000-0000"/>
         </div>
         <div class="field">
           <label for="program">Program of Interest</label>
-          <select id="program">
+          <select id="program" name="Program">
             <option>NC Pre-Licensing Course — $499</option>
             <option>General Update CE — $49</option>
             <option>Not sure yet</option>
@@ -779,14 +842,16 @@ footer {
         </div>
         <div class="field">
           <label for="message">Message</label>
-          <textarea id="message" placeholder="What questions do you have?"></textarea>
+          <textarea id="message" name="Message" placeholder="What questions do you have?"></textarea>
         </div>
         <button type="submit" class="form-submit">Send Message →</button>
       </form>
       <div class="form-success" id="formSuccess">
         <div class="checkmark">✦</div>
-        <p>Message received.</p>
-        <small>We'll be in touch within one business day.</small>
+        <h3>Message Received.</h3>
+        <div class="success-divider"></div>
+        <p>Thank you for reaching out. A member of the W.I.S.E. team will follow up with you within one business day.</p>
+        <small>Admin@worthyinstitute.net · 803-524-8596</small>
       </div>
     </div>
 
@@ -797,7 +862,7 @@ footer {
 <footer>
   <img src="wiselogo1.png" alt="W.I.S.E." class="footer-logo-img"/>
   <div class="footer-links">
-    <a href="https://worthyinstitute.net/policies.pdf" target="_blank" rel="noopener">Policies</a>
+    <a href="Policies (1).pdf" target="_blank" rel="noopener">Policies</a>
     <a href="https://worthyinstitute.net/catalog.html" target="_blank" rel="noopener">Catalog</a>
     <a href="index.html">Home</a>
   </div>
@@ -831,27 +896,41 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
-// ── Course Card Toggle → swaps Calendly + scrolls down ──
+// ── Course Card Toggle ──
+const calendlyWrapper = document.getElementById('calendlyWrapper');
+const waitlistPanel = document.getElementById('waitlistPanel');
+
 document.querySelectorAll('.course-card').forEach(card => {
   card.addEventListener('click', () => {
     document.querySelectorAll('.course-card').forEach(c => c.classList.remove('active'));
     card.classList.add('active');
+
     const newUrl = card.getAttribute('data-calendly');
-    const embed = document.getElementById('calendly-embed');
-    embed.setAttribute('data-url', newUrl);
-    embed.innerHTML = '';
-    if (window.Calendly) {
-      Calendly.initInlineWidget({ url: newUrl, parentElement: embed });
+
+    if (newUrl) {
+      // General Update CE — show Calendly
+      calendlyWrapper.style.display = 'block';
+      waitlistPanel.style.display = 'none';
+      const embed = document.getElementById('calendly-embed');
+      embed.setAttribute('data-url', newUrl);
+      embed.innerHTML = '';
+      if (window.Calendly) {
+        Calendly.initInlineWidget({ url: newUrl, parentElement: embed });
+      }
+      calendlyWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // NC Pre-Licensing — show waitlist panel
+      calendlyWrapper.style.display = 'none';
+      waitlistPanel.style.display = 'block';
+      waitlistPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    // Scroll to the Calendly embed
-    document.querySelector('.booking-embed-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 
 // ── Contact Form ──
 const form = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const firstName = document.getElementById('firstName').value.trim();
   const email = document.getElementById('email').value.trim();
@@ -860,6 +939,8 @@ form.addEventListener('submit', (e) => {
     if (!email) document.getElementById('email').closest('.field').style.borderColor = 'rgba(255,100,100,0.5)';
     return;
   }
+  const data = new FormData(form);
+  await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
   form.style.display = 'none';
   formSuccess.style.display = 'block';
 });
@@ -867,13 +948,41 @@ document.querySelectorAll('.field input, .field textarea, .field select').forEac
   input.addEventListener('input', () => { input.closest('.field').style.borderColor = ''; });
 });
 
+// ── Waitlist Form ──
+const waitlistForm = document.getElementById('waitlistForm');
+waitlistForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(waitlistForm);
+  data.append('_subject', 'NC Pre-Licensing Waitlist Request');
+  await fetch(waitlistForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+  waitlistForm.style.display = 'none';
+  document.getElementById('waitlistSuccess').style.display = 'block';
+});
+
 // ── Open contact tab if linked with #contact ──
-if (window.location.hash === '#contact') {
+function openContactTab(showWaitlistNote) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelector('[data-tab="contact"]').classList.add('active');
   document.getElementById('tab-contact').classList.add('active');
+  if (showWaitlistNote) {
+    document.getElementById('waitlistNote').style.display = 'block';
+  }
+  document.querySelector('.page-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+if (window.location.hash === '#contact') {
+  openContactTab(false);
+}
+
+// ── Auto-show waitlist panel if linked with #waitlist ──
+if (window.location.hash === '#waitlist') {
+  document.querySelectorAll('.course-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('prelicWaitlistBtn').classList.add('active');
+  calendlyWrapper.style.display = 'none';
+  waitlistPanel.style.display = 'block';
+}
+
 
 // ── Year ──
 document.getElementById('year').textContent = new Date().getFullYear();
